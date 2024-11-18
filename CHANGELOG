@@ -1,0 +1,17 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.  
+This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.0.0] - 2024-11-XX
+### Added
+- Initial release of the project based on modifications to the original open-source template.
+- Added [CHANGELOG](CHANGELOG)
+- Added Keyword and Sentiment Extraction for public attributes (temporary while advertising the DLP)
+- Added Uniqueness scoring using salted (user,source) submissions and messages bloom filter
+
+### Changed
+- Updated [MIT license](LICENSE) to include modifications notice and updated copyright information.
+
+### Removed
+- Deprecated or unnecessary features/components from the original template.

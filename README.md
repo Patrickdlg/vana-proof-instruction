@@ -1,14 +1,14 @@
-# Vana Satya Proof of Contribution - Python Template
+# Vana Satya Proof of Contribution - dFusion Social Truth
 
-This repository serves as a template for creating a [proof of contribution](https://docs.vana.org/vana/core-concepts/key-elements/proof-of-contribution) tasks using Python. It is executed on Vana's Satya Network, a group of highly confidential and secure compute nodes that can validate data without revealing its contents to the node operator.
+This repository implements dFusion's Social Truth [proof of contribution](https://docs.vana.org/vana/core-concepts/key-elements/proof-of-contribution) task using Python. It is executed on Vana's Satya Network, a group of highly confidential and secure compute nodes that can validate data without revealing its contents to the node operator.
 
 ## Overview
 
-This template provides a basic structure for building proof tasks that:
+The basic structure comes from the [vana-satya-proof-template](https://github.com/vana-com/vana-satya-proof-template). This implements a task that:
 
-1. Read input files from the `/input` directory.
-2. Process the data securely, running any necessary validations to prove the data authentic, unique, high quality, etc.
-3. Write proof results to the `/output/results.json` file in the following format:
+1. Reads input files from the `/input` directory.
+2. Processes the data securely, running any necessary validations to prove the data authentic, unique, high quality, etc.
+3. Writes proof results to the `/output/results.json` file in the following format:
 
 ```json
 {
@@ -40,26 +40,9 @@ The project is designed to work with [Gramine](https://gramine.readthedocs.io/en
 - `my-proof.manifest.template`: Gramine manifest template for running securely in an Intel SGX enclave
 - `config.yaml`: Configuration file for Gramine Shielded Containers (GSC)
 
-## Getting Started
-
-To use this template:
-
-1. Fork this repository
-2. Modify the `my_proof/proof.py` file to implement your specific proof logic
-3. Update the `my-proof.manifest.template` if you need to add any additional files or change the configuration
-4. Commit your changes and push to your repository
-
-## Customizing the Proof Logic
-
-The main proof logic is implemented in `my_proof/proof.py`. To customize it, update the `Proof.generate()` function to change how input files are processed.
-
-The proof can be configured using environment variables. When running in an enclave, the environment variables must be defined in the `my-proof.manifest.template` file as well. The following environment variables are used for this demo proof:
-
-- `USER_EMAIL`: The email address of the data contributor, to verify data ownership
-
-If you want to use a language other than Python, you can modify the Dockerfile to install the necessary dependencies and build the proof task in the desired language.
-
 ## Local Development
+
+This proof uses python-3.11
 
 To run the proof locally, without Gramine, you can use Docker:
 
@@ -73,6 +56,8 @@ docker run \
 --env USER_EMAIL=user123@gmail.com \
 my-proof
 ```
+
+
 
 ## Building and Releasing
 
@@ -145,10 +130,6 @@ This template leverages several security features:
 2. **Encrypted Storage**: The `/sealed` directory is automatically encrypted/decrypted by Gramine, providing secure storage for sensitive data.
 3. **Input/Output Isolation**: Input and output directories are mounted separately, ensuring clear data flow boundaries.
 4. **Minimal Attack Surface**: The Gramine manifest limits the files and resources accessible to the enclave, reducing potential vulnerabilities.
-
-## Customization
-
-Feel free to modify any part of this template to fit your specific needs. The goal is to provide a starting point that can be easily adapted to various proof tasks.
 
 ## Contributing
 

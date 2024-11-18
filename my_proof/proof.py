@@ -6,6 +6,8 @@ from typing import Dict, Any
 import requests
 
 from my_proof.models.proof_response import ProofResponse
+from utils.hashing_utils import salted_data, serialize_bloom_filter_base64, deserialize_bloom_filter_base64
+from utils.feature_extraction import get_keywords, get_sentiment_data
 
 
 class Proof:
@@ -17,9 +19,10 @@ class Proof:
         """Generate proofs for all input files."""
         logging.info("Starting proof generation")
 
-        # Iterate through files and calculate data validity
-        account_email = None
-        total_score = 0
+        zktls_proof = None
+        chats = None
+        source = None
+        user = None
 
         for input_filename in os.listdir(self.config['input_dir']):
             input_file = os.path.join(self.config['input_dir'], input_filename)
@@ -27,47 +30,73 @@ class Proof:
                 with open(input_file, 'r') as f:
                     input_data = json.load(f)
 
-                    if input_filename == 'account.json':
-                        account_email = input_data.get('email', None)
+                    if input_filename == 'zktls_proof.json':
+                        zktls_proof = input_data.get('zktls_proof', None)
                         continue
 
-                    elif input_filename == 'activity.json':
-                        total_score = sum(item['score'] for item in input_data)
+                    elif input_filename == 'chats.json':
+                        chats = input_data.get('chats', None)
+                        user = input_data.get('user', None)
+                        source = input_data.get('source', None)
                         continue
 
-        email_matches = self.config['user_email'] == account_email
-        score_threshold = fetch_random_number()
-
-        # Calculate proof-of-contribution scores: https://docs.vana.org/vana/core-concepts/key-elements/proof-of-contribution/example-implementation
-        self.proof_response.ownership = 1.0 if email_matches else 0.0  # Does the data belong to the user? Or is it fraudulent?
-        self.proof_response.quality = max(0, min(total_score / score_threshold, 1.0))  # How high quality is the data?
-        self.proof_response.authenticity = 0  # How authentic is the data is (ie: not tampered with)? (Not implemented here)
-        self.proof_response.uniqueness = 0  # How unique is the data relative to other datasets? (Not implemented here)
-
-        # Calculate overall score and validity
-        self.proof_response.score = 0.6 * self.proof_response.quality + 0.4 * self.proof_response.ownership
-        self.proof_response.valid = email_matches and total_score >= score_threshold
-
-        # Additional (public) properties to include in the proof about the data
+        salt = self.config['salt']
+        source_user_hash_64 = salted_data(user, salt)
+        is_data_authentic = get_is_data_authentic(chats, zktls_proof)
+        self.proof_response.ownership = 1.0 if is_data_authentic else 0.0 #TODO: What can we do to check the account is owned by submitter even if the TLS is valid
+        self.proof_response.authenticity = 1.0 if is_data_authentic else 0.0
+        if not is_data_authentic: #short circuit so we don't waste analysis
+            self.proof_response.score = 0.0
+            self.proof_response.uniqueness = 0.0
+            self.proof_response.quality = 0.0
+            self.proof_response.valid = False
+            self.proof_response.attributes = {
+                'proof_valid': False,
+                'did_score_content': False,
+                'source_user_hash_64': source_user_hash_64
+            }
+            self.proof_response.metadata = {
+                'dlp_id': self.config['dlp_id'],
+            }
+            return self.proof_response
+        
+        uniqueness = get_uniqueness(source_user_hash_64, chats)
+        score_threshold = 0.5 #UPDATE after testing some conversations
+        self.proof_response.valid = is_data_authentic and quality >= score_threshold
+        keywords = []
+        sentiment = {}
+        if self.proof_response.valid:
+            keywords = get_keywords(chats)
+            sentiment = get_sentiment_data(chats)
         self.proof_response.attributes = {
-            'total_score': total_score,
-            'score_threshold': score_threshold,
-            'email_verified': email_matches,
+            'proof_valid': is_data_authentic,
+            'did_score_content': True,
+            'source_user_hash_64': source_user_hash,
+            'sentiment': sentiment,
+            'keywords': keywords
         }
-
-        # Additional metadata about the proof, written onchain
         self.proof_response.metadata = {
             'dlp_id': self.config['dlp_id'],
         }
-
         return self.proof_response
 
 
-def fetch_random_number() -> float:
-    """Demonstrate HTTP requests by fetching a random number from random.org."""
-    try:
-        response = requests.get('https://www.random.org/decimal-fractions/?num=1&dec=2&col=1&format=plain&rnd=new')
-        return float(response.text.strip())
-    except requests.RequestException as e:
-        logging.warning(f"Error fetching random number: {e}. Using local random.")
-        return __import__('random').random()
+def get_is_data_authentic(content, zktls_proof) -> bool:
+    """Determine if the submitted data is authentic by checking the content against a zkTLS proof"""
+    return 1.0
+
+def get_chat_quality(chat) -> float:
+    """Compute and return the overall score of a chat based on weighted average for message recency, conversation length, and number of participants"""
+    return 1.0
+
+def get_uniqueness(source_user_hash_64, chats) -> float:
+    """Compute the uniqueness of the submitted data"""
+    #TODO: Check indexing on the IPFS data and see if we can fetch the saved attributes
+    return 1.0
+
+def get_user_submission_freshness(source, user) -> float:
+    """Compute User Submission freshness"""
+    #TODO: Get the IPFS data and check the attributes for timestamp of last submission
+    #TODO: Implement cool-down logic so that there is a cool down for one particular social media account. I.E. someone who just submitted will get a very low number
+    return 1.0
+
