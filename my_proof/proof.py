@@ -41,7 +41,7 @@ class Proof:
                         continue
 
         salt = self.config['salt']
-        source_user_hash_64 = salted_data(user, salt)
+        source_user_hash_64 = salted_data((source, user), salt)
         is_data_authentic = get_is_data_authentic(chats, zktls_proof)
         self.proof_response.ownership = 1.0 if is_data_authentic else 0.0 #TODO: What can we do to check the account is owned by submitter even if the TLS is valid
         self.proof_response.authenticity = 1.0 if is_data_authentic else 0.0
