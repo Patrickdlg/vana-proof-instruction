@@ -65,11 +65,11 @@ class ChatData:
 
     def to_dict(self):
         return {
-            "chatId": self.chat_id,
-            "chatLength": self.chat_length,
-            "sentiment": self.sentiment,  # No need to call .to_dict() for dicts
+            "chat_id": self.chat_id,
+            "chat_length": self.chat_length,
+            "sentiment": self.sentiment,                # No need to call .to_dict() for dicts
             "keywords_keybert": self.keywords_keybert,  # Same for other dict fields
-            "keywords_lda": self.keywords_lda
+            "keywords_lda": self.keywords_lda           # Same for other dict fields
         }
 
 # MetaData for Source
@@ -77,12 +77,18 @@ class ChatData:
 class MetaData:
     source_id: str
     dlp_id: str
-    chat_data: List[ChatData]
+    chat_data_list: List[ChatData]
 
+    def to_dict(self):
+        return {
+            "source_id": self.source_id,
+            "dlp_id": self.dlp_id,
+            "chats": [chat_data.to_dict() for chat_data in self.chat_data_list]
+        }
 
 # CargoData for Source
 @dataclass
 class CargoData:
     source_data: SourceData
     source_id: str
-    chat_data: List[ChatData]
+    chat_data_list: List[ChatData]

@@ -6,6 +6,8 @@ from typing import List
 from utils.feature_extraction import get_sentiment_data, get_keywords_keybert, get_keywords_lda
 
 def get_registry_data(cargo_data: CargoData) -> List[ChatData]:
+
+    # the following items should be stored system config...
     provider_url = "https://your-vana-node-url"
     contract_address = "0xYourDataRegistryContractAddress"
     contract_abi = [
@@ -13,27 +15,25 @@ def get_registry_data(cargo_data: CargoData) -> List[ChatData]:
     ]
 
     # Create the client instance
-    client = DataRegistry(
+    data_registry = DataRegistry(
         provider_url,
         contract_address,
         contract_abi
     )
-
-    # Fetch and filter data
-    registry_chat_data = client.fetch_data(
-        cargo_data.source_data.source,  # Assuming source_data contains source
-        cargo_data.source_data.user
+    # Fetch data base on source & user_id
+    registry_chat_data = data_registry.fetch_chat_data(
+        cargo_data.source_id
     )
     return registry_chat_data
 
-def score_data(meta_data_list: List[ChatData], chat_id: int, content_length: int) -> float:
+def score_data(registry_chat_list: List[ChatData], chat_id: int, content_length: int) -> float:
     if content_length == 0 or len(meta_data_list) == 0:
         return 0
 
     total_score = 0
     entry_count = 0
 
-    for chat_data in meta_data_list:
+    for chat_data in registry_chat_list:
         matched = chat_data.chat_id == chat_id
         if matched:
             entry_count += 1
@@ -49,46 +49,59 @@ def score_data(meta_data_list: List[ChatData], chat_id: int, content_length: int
 
 def validate_data(cargo_data: CargoData) -> float:
     source_data = cargo_data.source_data
-    source_chats = cargo_data.chat_data
+    source_chats = source_data.chat_data
 
-    chat_list = []  # Initialize as a standard list
+    score_threshold = 0.5
+    number_of_keywords = 10
+
     total_score = 0
     chat_count = 0
 
-    registry_chat_data = get_registry_data(cargo_data)
+    registry_chat_list = get_registry_data(cargo_data)
     # Loop through the chat_data_list
     for source_chat in source_chats:
         chat_count += 1  # Increment chat count
         source_contents = source_chat.get_chat_contents(
-            source_data.source  # Assuming source_data has the 'source' field
+            source_data.source
         )
         contents_length = len(source_contents)
 
         chat_score = score_data(
-            registry_chat_data,
+            registry_chat_list,
             source_chat.chat_id,
             contents_length
         )
+        total_score += chat_score
 
-        if chat_score > 0.5:
+        # if chat data has meaningful data...
+        if chat_score > score_threshold:
             # content is unique...
-            sentiment = get_sentiment_data(source_chat)  # Assuming source_chat contains the data
-            keywords_keybert = get_keywords_keybert(source_chat, max_keywords=5)
-            keywords_lda = get_keywords_lda(source_chat, max_keywords=5)
+            chat_sentiment = get_sentiment_data(
+                source_contents
+            )
+            chat_keywords_keybert = get_keywords_keybert(
+                source_contents,
+                max_keywords=number_of_keywords
+            )
+            chat_keywords_lda = get_keywords_lda(
+                source_contents,
+                max_keywords=number_of_keywords
+            )
 
             # Create a ChatData instance and add it to the list
             chat_data = ChatData(
                 chat_id=source_chat.chat_id,
                 chat_length=contents_length,
-                sentiment=sentiment,
-                keywords_keybert=keywords_keybert,
-                keywords_lda=keywords_lda
+                sentiment=chat_sentiment,
+                keywords_keybert=chat_keywords_keybert,
+                keywords_lda=chat_keywords_lda
             )
-            chat_list.append(chat_data)
+            cargo_data.chat_data_list.append(
+                chat_data
+            )
 
     # Calculate uniqueness if there are chats
     if chat_count > 0:
-        total_score = sum(chat.chat_length for chat in chat_list)  # Example of scoring logic
         return total_score / chat_count
 
     return 0

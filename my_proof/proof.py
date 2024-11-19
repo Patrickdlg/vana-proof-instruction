@@ -149,7 +149,7 @@ class Proof:
             'did_score_content': True
         }
         #RL: not sure how fetch data from attribute, tempory put it in the metadata...
-        meta_data.chat_data = cargo_data.chat_data
+        meta_data.chat_data_list = cargo_data.chat_data_list
         self.proof_response.metadata = metadata
         return self.proof_response
 
