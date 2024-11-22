@@ -49,7 +49,7 @@ class SourceData:
         return {
             "source": self.source.name,  # Use .name to convert enum to string
             "user": self.user,
-            "chat_data": [chat_data.to_dict() for chat_data in self.chat_data]
+            "chats": [chat_data.to_dict() for chat_data in self.chat_data]
         }
 
 

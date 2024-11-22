@@ -118,7 +118,11 @@ class Proof:
             source_data = source_chat_data,
             source_id = source_user_hash_64
         )
-        validate_data(cargo_data)
+
+        validate_data(
+            self.config,
+            cargo_data
+        )
 
         metadata = MetaData(
           source_id = source_user_hash_64,
@@ -141,7 +145,9 @@ class Proof:
             return self.proof_response
 
         #RL: loop though the source chat data, and get reuslt & scores
-        uniqueness = validation_data(cargo_data)
+        uniqueness = validation_data(
+            cargo_data
+        )
         score_threshold = 0.5 #UPDATE after testing some conversations
         self.proof_response.valid = is_data_authentic and quality >= score_threshold and uniqueness > score_threshold
         self.proof_response.attributes = {

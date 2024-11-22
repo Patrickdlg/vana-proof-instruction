@@ -1,18 +1,21 @@
 from utils.data_registry import DataRegistry
 from models.cargo_data import CargoData, ChatData
-from typing import List
+from typing import List, Dict, Any
 
 # Assuming the existence of these functions
 from utils.feature_extraction import get_sentiment_data, get_keywords_keybert, get_keywords_lda
 
-def get_registry_data(cargo_data: CargoData) -> List[ChatData]:
+def get_registry_data(
+        config: Dict[str, Any],
+        cargo_data: CargoData
+    ) -> List[ChatData]:
 
     # the following items should be stored system config...
-    provider_url = "https://your-vana-node-url"
-    contract_address = "0xYourDataRegistryContractAddress"
-    contract_abi = [
-        # Include ABI JSON here
-    ]
+    provider_url = config['dlp_url']         # "https://your-vana-node-url"
+    contract_address = config['dlp_address'] # "0xYourDataRegistryContractAddress"
+    contract_abi = None
+    with open(config['dlp_abi_path']) as f:
+      contract_abi = json.load(f)            # [Include ABI JSON here]
 
     # Create the client instance
     data_registry = DataRegistry(
@@ -47,7 +50,10 @@ def score_data(registry_chat_list: List[ChatData], chat_id: int, content_length:
 
     return 1
 
-def validate_data(cargo_data: CargoData) -> float:
+def validate_data(
+    config: Dict[str, Any],
+    cargo_data: CargoData
+) -> float:
     source_data = cargo_data.source_data
     source_chats = source_data.chat_data
 
@@ -57,7 +63,10 @@ def validate_data(cargo_data: CargoData) -> float:
     total_score = 0
     chat_count = 0
 
-    registry_chat_list = get_registry_data(cargo_data)
+    registry_chat_list = get_registry_data(
+        config,
+        cargo_data
+    )
     # Loop through the chat_data_list
     for source_chat in source_chats:
         chat_count += 1  # Increment chat count

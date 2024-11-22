@@ -17,6 +17,9 @@ def load_config() -> Dict[str, Any]:
     """Load proof configuration from environment variables."""
     config = {
         'dlp_id': 1234,  # Set your own DLP ID here
+        'dlp_url': "https://rpc.moksha.vana.org" #"https://your-vana-node-url",
+        'dlp_address': " 0xEA882bb75C54DE9A08bC46b46c396727B4BFe9a5", # data-registry dlp-address
+        'dlp_abi_path': "dlp-contract-abi.json",  # contract abi...
         'use_sealing': os.path.isdir(SEALED_DIR),
         'input_dir': INPUT_DIR,
         'salt': os.environ.get('SALT', None), #TODO: Move Salt to Secrets in manifest https://docs.vana.org/docs/data-validation#running-proofs-on-a-satya-node
