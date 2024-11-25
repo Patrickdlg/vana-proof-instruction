@@ -1,42 +1,27 @@
-from utils.data_registry import DataRegistry
 from models.cargo_data import CargoData, ChatData
 from typing import List, Dict, Any
 
 # Assuming the existence of these functions
 from utils.feature_extraction import get_sentiment_data, get_keywords_keybert, get_keywords_lda
 
-def get_registry_data(
+def get_user_submited_chat_data(
         config: Dict[str, Any],
         cargo_data: CargoData
     ) -> List[ChatData]:
 
-    # the following items should be stored system config...
-    provider_url = config['dlp_url']         # "https://your-vana-node-url"
-    contract_address = config['dlp_address'] # "0xYourDataRegistryContractAddress"
-    contract_abi = None
-    with open(config['dlp_abi_path']) as f:
-      contract_abi = json.load(f)            # [Include ABI JSON here]
+    # Fetch old data from IPFS...
+    # Patrick: Need to found out from Vana Team...
 
-    # Create the client instance
-    data_registry = DataRegistry(
-        provider_url,
-        contract_address,
-        contract_abi
-    )
-    # Fetch data base on source & user_id
-    registry_chat_data = data_registry.fetch_chat_data(
-        cargo_data.source_id
-    )
-    return registry_chat_data
+    return []
 
-def score_data(registry_chat_list: List[ChatData], chat_id: int, content_length: int) -> float:
+def score_data(previous_chat_list: List[ChatData], chat_id: int, content_length: int) -> float:
     if content_length == 0 or len(meta_data_list) == 0:
         return 0
 
     total_score = 0
     entry_count = 0
 
-    for chat_data in registry_chat_list:
+    for chat_data in previous_chat_list:
         matched = chat_data.chat_id == chat_id
         if matched:
             entry_count += 1
@@ -63,7 +48,7 @@ def validate_data(
     total_score = 0
     chat_count = 0
 
-    registry_chat_list = get_registry_data(
+    previous_chat_list = get_user_submited_chat_data(
         config,
         cargo_data
     )
@@ -76,7 +61,7 @@ def validate_data(
         contents_length = len(source_contents)
 
         chat_score = score_data(
-            registry_chat_list,
+            previous_chat_list,
             source_chat.chat_id,
             contents_length
         )

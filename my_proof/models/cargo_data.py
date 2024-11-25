@@ -77,13 +77,11 @@ class ChatData:
 class MetaData:
     source_id: str
     dlp_id: str
-    chat_data_list: List[ChatData]
 
     def to_dict(self):
         return {
             "source_id": self.source_id,
-            "dlp_id": self.dlp_id,
-            "chats": [chat_data.to_dict() for chat_data in self.chat_data_list]
+            "dlp_id": self.dlp_id
         }
 
 # CargoData for Source

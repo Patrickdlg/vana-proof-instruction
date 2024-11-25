@@ -2,9 +2,9 @@ import json
 import logging
 import os
 from typing import Dict, Any
-
 import requests
 
+from datetime import datetime
 from models.proof_response import ProofResponse
 from utils.hashing_utils import salted_data, serialize_bloom_filter_base64, deserialize_bloom_filter_base64
 from utils.feature_extraction import get_keywords_keybert, get_sentiment_data, get_keywords_lda
@@ -15,6 +15,7 @@ class Proof:
         self.config = config
         self.proof_response = ProofResponse(dlp_id=config['dlp_id'])
 
+    #Patrck's original Code...
     def generate(self) -> ProofResponse:
         """Generate proofs for all input files."""
         logging.info("Starting proof generation")
@@ -132,6 +133,7 @@ class Proof:
         self.proof_response.ownership = 1.0 if is_data_authentic else 0.0 #TODO: What can we do to check the account is owned by submitter even if the TLS is valid
         self.proof_response.authenticity = 1.0 if is_data_authentic else 0.0
 
+        current_datetime = datetime.now()
         if not is_data_authentic: #short circuit so we don't waste analysis
             self.proof_response.score = 0.0
             self.proof_response.uniqueness = 0.0
@@ -139,7 +141,11 @@ class Proof:
             self.proof_response.valid = False
             self.proof_response.attributes = {
                 'proof_valid': False,
-                'did_score_content': False
+                'did_score_content': False,
+                'source': source_data.source,
+                'user_id': source_data.user,
+                'submit_on': current_datetime,
+                'chat_data': cargo_data.chat_data
             }
             self.proof_response.metadata = metadata
             return self.proof_response
