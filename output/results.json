@@ -1,0 +1,216 @@
+{
+  "dlp_id": 1234,
+  "valid": true,
+  "score": 0.0,
+  "authenticity": 1.0,
+  "ownership": 1.0,
+  "quality": 0.0,
+  "uniqueness": 0.0,
+  "attributes": {
+    "proof_valid": 1.0,
+    "did_score_content": true,
+    "source": "Telegram",
+    "user_id": "X0123",
+    "submit_on": "2024-11-27T11:23:16.935835",
+    "chat_data": [
+      {
+        "chat_id": 1048576,
+        "chat_length": 2,
+        "sentiment": {
+          "positive": 0.0,
+          "neutral": 0.6059117913246155,
+          "negative": 0.0
+        },
+        "keywords_keybert": {
+          "oi": 1.0
+        },
+        "keywords_lda": {
+          "oi": 1.0
+        }
+      },
+      {
+        "chat_id": 12582912,
+        "chat_length": 11,
+        "sentiment": {
+          "positive": 0.44164952635765076,
+          "neutral": 0.0,
+          "negative": 0.0
+        },
+        "keywords_keybert": {
+          "hello gball": 1.0,
+          "gball": 0.7769,
+          "hello": 0.6253
+        },
+        "keywords_lda": {
+          "gball": 0.5,
+          "hello": 0.4999999701976776
+        }
+      },
+      {
+        "chat_id": 13631488,
+        "chat_length": 43,
+        "sentiment": {
+          "positive": 0.0,
+          "neutral": 0.7004054188728333,
+          "negative": 0.0
+        },
+        "keywords_keybert": {
+          "raining design": 0.6627,
+          "says raining": 0.6366,
+          "raining": 0.5903,
+          "sharon says": 0.4829,
+          "sharon": 0.4216,
+          "design quarter": 0.4149,
+          "quarter": 0.3251,
+          "design": 0.2473,
+          "says": 0.1755
+        },
+        "keywords_lda": {
+          "design": 0.20000000298023224,
+          "quarter": 0.20000000298023224,
+          "raining": 0.20000000298023224,
+          "says": 0.20000000298023224,
+          "sharon": 0.20000000298023224
+        }
+      },
+      {
+        "chat_id": 14680064,
+        "chat_length": 38,
+        "sentiment": {
+          "positive": 0.0,
+          "neutral": 0.6911159753799438,
+          "negative": 0.0
+        },
+        "keywords_keybert": {
+          "laundry outside": 0.7623,
+          "laundry": 0.6361,
+          "eye laundry": 0.6205,
+          "outside": 0.3787,
+          "eye": 0.1539
+        },
+        "keywords_lda": {
+          "eye": 0.25,
+          "keep": 0.25,
+          "outside": 0.25,
+          "laundry": 0.25
+        }
+      },
+      {
+        "chat_id": 15728640,
+        "chat_length": 19,
+        "sentiment": {
+          "positive": 0.0,
+          "neutral": 0.8165092468261719,
+          "negative": 0.0
+        },
+        "keywords_keybert": {
+          "acknowledge": 0.784
+        },
+        "keywords_lda": {
+          "acknowledge": 1.0
+        }
+      },
+      {
+        "chat_id": 1048576,
+        "chat_length": 2,
+        "sentiment": {
+          "positive": 0.0,
+          "neutral": 0.6059117913246155,
+          "negative": 0.0
+        },
+        "keywords_keybert": {
+          "oi": 1.0
+        },
+        "keywords_lda": {
+          "oi": 1.0
+        }
+      },
+      {
+        "chat_id": 12582912,
+        "chat_length": 11,
+        "sentiment": {
+          "positive": 0.44164952635765076,
+          "neutral": 0.0,
+          "negative": 0.0
+        },
+        "keywords_keybert": {
+          "hello gball": 1.0,
+          "gball": 0.7769,
+          "hello": 0.6253
+        },
+        "keywords_lda": {
+          "hello": 0.5,
+          "gball": 0.4999999701976776
+        }
+      },
+      {
+        "chat_id": 13631488,
+        "chat_length": 43,
+        "sentiment": {
+          "positive": 0.0,
+          "neutral": 0.7004054188728333,
+          "negative": 0.0
+        },
+        "keywords_keybert": {
+          "raining design": 0.6627,
+          "says raining": 0.6366,
+          "raining": 0.5903,
+          "sharon says": 0.4829,
+          "sharon": 0.4216,
+          "design quarter": 0.4149,
+          "quarter": 0.3251,
+          "design": 0.2473,
+          "says": 0.1755
+        },
+        "keywords_lda": {
+          "raining": 0.20000000298023224,
+          "says": 0.20000000298023224,
+          "design": 0.20000000298023224,
+          "quarter": 0.20000000298023224,
+          "sharon": 0.20000000298023224
+        }
+      },
+      {
+        "chat_id": 14680064,
+        "chat_length": 38,
+        "sentiment": {
+          "positive": 0.0,
+          "neutral": 0.6911159753799438,
+          "negative": 0.0
+        },
+        "keywords_keybert": {
+          "laundry outside": 0.7623,
+          "laundry": 0.6361,
+          "eye laundry": 0.6205,
+          "outside": 0.3787,
+          "eye": 0.1539
+        },
+        "keywords_lda": {
+          "keep": 0.2499999850988388,
+          "laundry": 0.25,
+          "outside": 0.2499999850988388,
+          "eye": 0.25
+        }
+      },
+      {
+        "chat_id": 15728640,
+        "chat_length": 19,
+        "sentiment": {
+          "positive": 0.0,
+          "neutral": 0.8165092468261719,
+          "negative": 0.0
+        },
+        "keywords_keybert": {
+          "acknowledge": 0.784
+        },
+        "keywords_lda": {
+          "acknowledge": 1.0
+        }
+      }
+    ]
+  },
+  "metadata": {
+    "source_id": "cTmGr8OZhffkVE5OrY6zi6GY8yg09mLcGrMHzBCRTYQ=",
+    "dlp_id": 1234
+  }
+}

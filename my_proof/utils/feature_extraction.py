@@ -1,6 +1,9 @@
 from keybert import KeyBERT
 from transformers import pipeline
 
+from gensim.corpora.dictionary import Dictionary
+from gensim.models import LdaModel
+
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
@@ -9,9 +12,9 @@ def get_keywords(chats):
     keywords = kw_model.extract_keywords(chats)
     return keywords
 
-def get_keywords_keybert(text, top_n=5):
+def get_keywords_keybert(text, num_words=5):
     model = KeyBERT()
-    keywords = model.extract_keywords(text, keyphrase_ngram_range=(1, 2), stop_words='english', top_n=top_n)
+    keywords = model.extract_keywords(text, keyphrase_ngram_range=(1, 2), stop_words='english', top_n=num_words)
     return {word: score for word, score in keywords}
 
 def get_keywords_lda(text, num_topics=1, num_words=5):

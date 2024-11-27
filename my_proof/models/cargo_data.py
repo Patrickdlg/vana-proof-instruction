@@ -1,6 +1,7 @@
 from enum import Enum
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Any
+import numpy as np
 
 # Enum for DataSource
 class DataSource(Enum):
@@ -10,46 +11,35 @@ class DataSource(Enum):
 @dataclass
 class SourceChatData:
     chat_id: int
-    content: List[Any]  # Assuming content is a list of messages (could be strings, dictionaries, etc.)
+    contents: str
+
+    def __init__(self, chat_id, contents=None):
+        self.chat_id = chat_id
+        self.contents = contents
 
     def to_dict(self):
         return {
             "chat_id": self.chat_id,
-            "content": self.content
+            "contents": self.contents
         }
-
-    def get_chat_contents(self, data_source: DataSource) -> str:
-        if not isinstance(self.content, list):  # Validate content is a list
-            raise ValueError("Content must be a list of messages.")
-
-        if data_source == DataSource.Telegram:
-
-            # Ensure the `content` is iterable and extract texts from messages
-            contents = [
-                message["content"]["text"]["text"]
-                for message in self.content
-                if isinstance(message, dict)  # Ensure each item is a dictionary
-                and "content" in message
-                and message["content"].get("@type") == "messageText"
-                and "text" in message["content"]
-            ]
-            return " ".join(contents)  # Combine messages with a space separator
-
-        raise Exception(f"get_chat_contents: Unhandled data_source({data_source.name})")
-
 
 # SourceData with enum and chat data
 @dataclass
 class SourceData:
     source: DataSource         # "telegram"
     user: str
-    chat_data: List[SourceChatData]  # List of SourceChatData instances
+    source_chats: List[SourceChatData]  # List of SourceChatData instances
+
+    def __init__(self, source, user, source_chats=None):
+        self.source = source
+        self.user = user
+        self.source_chats = source_chats or []
 
     def to_dict(self):
         return {
             "source": self.source.name,  # Use .name to convert enum to string
             "user": self.user,
-            "chats": [chat_data.to_dict() for chat_data in self.chat_data]
+            "chats": [source_chat.to_dict() for source_chat in self.source_chats]
         }
 
 
@@ -72,6 +62,37 @@ class ChatData:
             "keywords_lda": self.keywords_lda           # Same for other dict fields
         }
 
+# CargoData for Source
+@dataclass
+class CargoData:
+    source_data: SourceData
+    source_id: str
+    chat_list: List[ChatData] = field(default_factory=list)
+
+    def to_dict(self):
+        # Return a dictionary representation of the CargoData object
+        return {
+            "source_data": self.source_data,  # Assuming source_data can be serialized directly
+            "source_id": self.source_id,
+            "chat_list": [chat.to_dict() for chat in self.chat_list]  # Convert each ChatData in the list to a dict
+        }
+
+    @staticmethod
+    def convert_to_serializable(obj: Any) -> Any:
+        if isinstance(obj, np.float32):
+            return float(obj)  # Convert float32 to float
+        elif isinstance(obj, dict):
+            return {k: CargoData.convert_to_serializable(v) for k, v in obj.items()}  # Recursively handle dictionary values
+        elif isinstance(obj, list):
+            return [CargoData.convert_to_serializable(item) for item in obj]  # Recursively handle list items
+        return obj  # Return the object if it's already serializable
+
+    def get_chat_list_data(self) -> Any:
+        # Convert each ChatData to dict and make sure all nested objects are serializable
+        chat_list_data = [self.convert_to_serializable(chat_data.to_dict()) for chat_data in self.chat_list]
+        return chat_list_data
+
+
 # MetaData for Source
 @dataclass
 class MetaData:
@@ -83,10 +104,3 @@ class MetaData:
             "source_id": self.source_id,
             "dlp_id": self.dlp_id
         }
-
-# CargoData for Source
-@dataclass
-class CargoData:
-    source_data: SourceData
-    source_id: str
-    chat_data_list: List[ChatData]

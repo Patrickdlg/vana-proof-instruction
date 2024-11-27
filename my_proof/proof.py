@@ -8,8 +8,9 @@ from datetime import datetime
 from models.proof_response import ProofResponse
 from utils.hashing_utils import salted_data, serialize_bloom_filter_base64, deserialize_bloom_filter_base64
 from utils.feature_extraction import get_keywords_keybert, get_sentiment_data, get_keywords_lda
-from models.cargo_data import SourceChatData, CargoData
+from models.cargo_data import SourceChatData, CargoData, SourceData, DataSource, MetaData, DataSource
 from utils.validate_data import validate_data
+
 class Proof:
     def __init__(self, config: Dict[str, Any]):
         self.config = config
@@ -91,35 +92,38 @@ class Proof:
         logging.info("Starting proof generation")
 
         zktls_proof = None
-        source_chat_data = None
+        source_data = None
 
         for input_filename in os.listdir(self.config['input_dir']):
             input_file = os.path.join(self.config['input_dir'], input_filename)
             if os.path.splitext(input_file)[1].lower() == '.json':
                 with open(input_file, 'r') as f:
                     input_data = json.load(f)
+                    #print(f"Input Data: {input_data}")
 
                     if input_filename == 'zktls_proof.json':
                         zktls_proof = input_data.get('zktls_proof', None)
                         continue
 
                     elif input_filename == 'chats.json':
-                        source_chat_data = SourceChatData(
-                           source = input_data.get('source', None),
-                           user = input_data.get('user', None),
-                           chat_data = input_data.get('chats', None)
+                        source_data = get_source_data(
+                            input_data
                         )
                         continue
 
         salt = self.config['salt']
-        source_user_hash_64 = salted_data((source_data.source, source_data.user), salt)
-        is_data_authentic = get_is_data_authentic(source_data.chat_data, zktls_proof)
-
+        source_user_hash_64 = salted_data(
+            (source_data.source, source_data.user),
+            salt
+        )
+        is_data_authentic = get_is_data_authentic(
+            source_data,
+            zktls_proof
+        )
         cargo_data = CargoData(
-            source_data = source_chat_data,
+            source_data = source_data,
             source_id = source_user_hash_64
         )
-
         validate_data(
             self.config,
             cargo_data
@@ -130,10 +134,10 @@ class Proof:
           dlp_id = self.config['dlp_id']
         )
 
-        self.proof_response.ownership = 1.0 if is_data_authentic else 0.0 #TODO: What can we do to check the account is owned by submitter even if the TLS is valid
+        self.proof_response.ownership = 1.0 if is_data_authentic else 0.0
         self.proof_response.authenticity = 1.0 if is_data_authentic else 0.0
 
-        current_datetime = datetime.now()
+        current_datetime = datetime.now().isoformat()
         if not is_data_authentic: #short circuit so we don't waste analysis
             self.proof_response.score = 0.0
             self.proof_response.uniqueness = 0.0
@@ -142,28 +146,84 @@ class Proof:
             self.proof_response.attributes = {
                 'proof_valid': False,
                 'did_score_content': False,
-                'source': source_data.source,
+                'source': source_data.Source.name,
                 'user_id': source_data.user,
                 'submit_on': current_datetime,
-                'chat_data': cargo_data.chat_data
+                'chat_data': None
             }
             self.proof_response.metadata = metadata
             return self.proof_response
 
         #RL: loop though the source chat data, and get reuslt & scores
-        uniqueness = validation_data(
+        uniqueness = validate_data(
+            self.config,
             cargo_data
         )
+        quality = get_chat_quality(cargo_data)
         score_threshold = 0.5 #UPDATE after testing some conversations
         self.proof_response.valid = is_data_authentic and quality >= score_threshold and uniqueness > score_threshold
+
         self.proof_response.attributes = {
             'proof_valid': is_data_authentic,
-            'did_score_content': True
+            'did_score_content': True,
+            'source': source_data.source.name,
+            'user_id': source_data.user,
+            'submit_on': current_datetime,
+            'chat_data': cargo_data.get_chat_list_data()
         }
-        #RL: not sure how fetch data from attribute, tempory put it in the metadata...
-        meta_data.chat_data_list = cargo_data.chat_data_list
         self.proof_response.metadata = metadata
         return self.proof_response
+
+def get_source_data(input_data: Dict[str, Any]) -> SourceData:
+
+    input_source = None
+    input_source_value = input_data.get('source')
+    if (input_source_value.upper() == 'TELEGRAM'):
+        input_source = DataSource.Telegram
+    else:
+        print(f"Unmapped data source: {input_source_value}")
+
+    input_user = input_data.get('user')
+
+    source_data = SourceData(
+        source = input_source,
+        user = input_user
+    )
+
+    input_chats = input_data.get('chats', [])
+    source_data_list = []
+
+    for input_chat in input_chats:
+        #print(f"input_chat: {input_chat}")
+        chat_id = None
+        contents = None
+        if input_source == DataSource.Telegram:
+            chat_type = input_chat.get('@type', None)
+            #print(f"chat_type: {chat_type}")
+            if (chat_type == "message"):
+                chat_id = input_chat.get('id', None)
+                message = input_chat.get('content', [])
+                #print(f"messages: {message}")
+                # Ensure 'messages' is a dictionary and extract text if applicable
+                if isinstance(message, dict) and message.get("@type") == "messageText":
+                    # Extract the nested 'text' field
+                    contents = message.get("text", {}).get("text", "")
+                    #print(f"chat_contents: {contents}")
+        else:
+            print(f"Unhandled data source: {input_source}")
+
+        if (chat_id and contents):
+            source_chat_data = SourceChatData(
+                chat_id = chat_id,
+                contents = contents
+            )
+            source_data_list.append(
+                source_chat_data
+            )
+
+    source_data.source_chats = source_data_list
+    print(f"Source data: {source_data}")
+    return source_data
 
 def get_is_data_authentic(content, zktls_proof) -> bool:
     """Determine if the submitted data is authentic by checking the content against a zkTLS proof"""

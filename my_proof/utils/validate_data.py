@@ -1,4 +1,4 @@
-from models.cargo_data import CargoData, ChatData
+from models.cargo_data import CargoData, ChatData, SourceChatData, SourceData
 from typing import List, Dict, Any
 
 # Assuming the existence of these functions
@@ -15,12 +15,11 @@ def get_user_submited_chat_data(
     return []
 
 def score_data(previous_chat_list: List[ChatData], chat_id: int, content_length: int) -> float:
-    if content_length == 0 or len(meta_data_list) == 0:
+    if content_length == 0 :
         return 0
 
     total_score = 0
     entry_count = 0
-
     for chat_data in previous_chat_list:
         matched = chat_data.chat_id == chat_id
         if matched:
@@ -40,7 +39,7 @@ def validate_data(
     cargo_data: CargoData
 ) -> float:
     source_data = cargo_data.source_data
-    source_chats = source_data.chat_data
+    source_chats = source_data.source_chats
 
     score_threshold = 0.5
     number_of_keywords = 10
@@ -54,11 +53,14 @@ def validate_data(
     )
     # Loop through the chat_data_list
     for source_chat in source_chats:
+
+        print(f"source_chat:{source_chat}")
         chat_count += 1  # Increment chat count
-        source_contents = source_chat.get_chat_contents(
-            source_data.source
-        )
-        contents_length = len(source_contents)
+        source_contents = None
+        contents_length = 0
+        if source_chat.contents:  # Ensure chat_contents is not None
+            source_contents = source_chat.contents
+            contents_length = len(source_contents)
 
         chat_score = score_data(
             previous_chat_list,
@@ -75,11 +77,11 @@ def validate_data(
             )
             chat_keywords_keybert = get_keywords_keybert(
                 source_contents,
-                max_keywords=number_of_keywords
+                number_of_keywords
             )
             chat_keywords_lda = get_keywords_lda(
                 source_contents,
-                max_keywords=number_of_keywords
+                number_of_keywords
             )
 
             # Create a ChatData instance and add it to the list
@@ -90,7 +92,8 @@ def validate_data(
                 keywords_keybert=chat_keywords_keybert,
                 keywords_lda=chat_keywords_lda
             )
-            cargo_data.chat_data_list.append(
+            print(f"chat_data: {chat_data}")
+            cargo_data.chat_list.append(
                 chat_data
             )
 

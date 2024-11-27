@@ -1,0 +1,206 @@
+{
+    "source": "Telegram",
+    "user": "X0123",
+    "chats": [
+        {
+            "@type": "message",
+            "id": 1048576,
+            "sender_id": {
+                "@type": "messageSenderUser",
+                "user_id": 7700799410
+            },
+            "chat_id": 7700799410,
+            "is_outgoing": false,
+            "is_pinned": false,
+            "is_from_offline": false,
+            "can_be_saved": true,
+            "has_timestamped_media": true,
+            "is_channel_post": false,
+            "is_topic_message": false,
+            "contains_unread_mention": false,
+            "date": 1731482774,
+            "edit_date": 0,
+            "unread_reactions": [],
+            "message_thread_id": 0,
+            "saved_messages_topic_id": 0,
+            "self_destruct_in": 0,
+            "auto_delete_in": 0,
+            "via_bot_user_id": 0,
+            "sender_business_bot_user_id": 0,
+            "sender_boost_count": 0,
+            "author_signature": "",
+            "media_album_id": "0",
+            "effect_id": "0",
+            "has_sensitive_content": false,
+            "restriction_reason": "",
+            "content": {
+                "@type": "messageText",
+                "text": {
+                    "@type": "formattedText",
+                    "text": "oi",
+                    "entities": []
+                }
+            }
+        },
+        {
+            "@type": "message",
+            "id": 12582912,
+            "sender_id": {
+                "@type": "messageSenderUser",
+                "user_id": 7700799410
+            },
+            "chat_id": 7700799410,
+            "is_outgoing": false,
+            "is_pinned": false,
+            "is_from_offline": false,
+            "can_be_saved": true,
+            "has_timestamped_media": true,
+            "is_channel_post": false,
+            "is_topic_message": false,
+            "contains_unread_mention": false,
+            "date": 1731490718,
+            "edit_date": 0,
+            "unread_reactions": [],
+            "message_thread_id": 0,
+            "saved_messages_topic_id": 0,
+            "self_destruct_in": 0,
+            "auto_delete_in": 0,
+            "via_bot_user_id": 0,
+            "sender_business_bot_user_id": 0,
+            "sender_boost_count": 0,
+            "author_signature": "",
+            "media_album_id": "0",
+            "effect_id": "0",
+            "has_sensitive_content": false,
+            "restriction_reason": "",
+            "content": {
+                "@type": "messageText",
+                "text": {
+                    "@type": "formattedText",
+                    "text": "hello gball",
+                    "entities": []
+                }
+            }
+        },
+        {
+            "@type": "message",
+            "id": 13631488,
+            "sender_id": {
+                "@type": "messageSenderUser",
+                "user_id": 7700799410
+            },
+            "chat_id": 7700799410,
+            "is_outgoing": false,
+            "is_pinned": false,
+            "is_from_offline": false,
+            "can_be_saved": true,
+            "has_timestamped_media": true,
+            "is_channel_post": false,
+            "is_topic_message": false,
+            "contains_unread_mention": false,
+            "date": 1731490725,
+            "edit_date": 0,
+            "unread_reactions": [],
+            "message_thread_id": 0,
+            "saved_messages_topic_id": 0,
+            "self_destruct_in": 0,
+            "auto_delete_in": 0,
+            "via_bot_user_id": 0,
+            "sender_business_bot_user_id": 0,
+            "sender_boost_count": 0,
+            "author_signature": "",
+            "media_album_id": "0",
+            "effect_id": "0",
+            "has_sensitive_content": false,
+            "restriction_reason": "",
+            "content": {
+                "@type": "messageText",
+                "text": {
+                    "@type": "formattedText",
+                    "text": "sharon says it is raining by design quarter",
+                    "entities": []
+                }
+            }
+        },
+        {
+            "@type": "message",
+            "id": 14680064,
+            "sender_id": {
+                "@type": "messageSenderUser",
+                "user_id": 7700799410
+            },
+            "chat_id": 7700799410,
+            "is_outgoing": false,
+            "is_pinned": false,
+            "is_from_offline": false,
+            "can_be_saved": true,
+            "has_timestamped_media": true,
+            "is_channel_post": false,
+            "is_topic_message": false,
+            "contains_unread_mention": false,
+            "date": 1731490735,
+            "edit_date": 0,
+            "unread_reactions": [],
+            "message_thread_id": 0,
+            "saved_messages_topic_id": 0,
+            "self_destruct_in": 0,
+            "auto_delete_in": 0,
+            "via_bot_user_id": 0,
+            "sender_business_bot_user_id": 0,
+            "sender_boost_count": 0,
+            "author_signature": "",
+            "media_album_id": "0",
+            "effect_id": "0",
+            "has_sensitive_content": false,
+            "restriction_reason": "",
+            "content": {
+                "@type": "messageText",
+                "text": {
+                    "@type": "formattedText",
+                    "text": "keep an eye out on the laundry outside",
+                    "entities": []
+                }
+            }
+        },
+        {
+            "@type": "message",
+            "id": 15728640,
+            "sender_id": {
+                "@type": "messageSenderUser",
+                "user_id": 7700799410
+            },
+            "chat_id": 7700799410,
+            "is_outgoing": false,
+            "is_pinned": false,
+            "is_from_offline": false,
+            "can_be_saved": true,
+            "has_timestamped_media": true,
+            "is_channel_post": false,
+            "is_topic_message": false,
+            "contains_unread_mention": false,
+            "date": 1731490742,
+            "edit_date": 0,
+            "unread_reactions": [],
+            "message_thread_id": 0,
+            "saved_messages_topic_id": 0,
+            "self_destruct_in": 0,
+            "auto_delete_in": 0,
+            "via_bot_user_id": 0,
+            "sender_business_bot_user_id": 0,
+            "sender_boost_count": 0,
+            "author_signature": "",
+            "media_album_id": "0",
+            "effect_id": "0",
+            "has_sensitive_content": false,
+            "restriction_reason": "",
+            "content": {
+                "@type": "messageText",
+                "text": {
+                    "@type": "formattedText",
+                    "text": "do you acknowledge?",
+                    "entities": []
+                }
+            }
+        }
+    ]
+}
