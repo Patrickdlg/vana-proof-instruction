@@ -54,7 +54,7 @@ def validate_data(
     # Loop through the chat_data_list
     for source_chat in source_chats:
 
-        print(f"source_chat:{source_chat}")
+        #print(f"source_chat:{source_chat}")
         chat_count += 1  # Increment chat count
         source_contents = None
         contents_length = 0
@@ -92,7 +92,7 @@ def validate_data(
                 keywords_keybert=chat_keywords_keybert,
                 keywords_lda=chat_keywords_lda
             )
-            print(f"chat_data: {chat_data}")
+            #print(f"chat_data: {chat_data}")
             cargo_data.chat_list.append(
                 chat_data
             )

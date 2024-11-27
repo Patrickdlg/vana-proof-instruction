@@ -54,6 +54,7 @@ docker run \
 --volume $(pwd)/demo/input:/input \
 --volume $(pwd)/demo/output:/output \
 --env USER_EMAIL=user123@gmail.com \
+source activate pytorch
 my-proof
 ```
 
@@ -119,6 +120,7 @@ docker run \
 --env USER_EMAIL=user123@gmail.com \
 gsc-my-proof
 ```
+
 
 Remember to populate the `/input` directory with the files you want to process.
 

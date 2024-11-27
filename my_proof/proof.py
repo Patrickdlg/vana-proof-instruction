@@ -222,7 +222,7 @@ def get_source_data(input_data: Dict[str, Any]) -> SourceData:
             )
 
     source_data.source_chats = source_data_list
-    print(f"Source data: {source_data}")
+    #print(f"Source data: {source_data}")
     return source_data
 
 def get_is_data_authentic(content, zktls_proof) -> bool:
