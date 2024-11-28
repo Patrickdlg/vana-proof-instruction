@@ -165,7 +165,7 @@ class Proof:
         self.proof_response.valid = is_data_authentic and quality >= score_threshold and uniqueness > score_threshold
         self.proof_response.uniqueness = uniqueness
         self.proof_response.quality = quality
-        
+
         self.proof_response.attributes = {
             'proof_valid': is_data_authentic,
             'did_score_content': True,
@@ -188,7 +188,7 @@ def get_source_data(input_data: Dict[str, Any]) -> SourceData:
         print(f"Unmapped data source: {input_source_value}")
 
     input_user = input_data.get('user')
-    print(f"input_user: {input_user}")
+    #print(f"input_user: {input_user}")
 
     source_data = SourceData(
         source=input_source,
@@ -196,27 +196,27 @@ def get_source_data(input_data: Dict[str, Any]) -> SourceData:
     )
 
     input_chats = input_data.get('chats', [])
-    print(f"input_chats: {input_chats}")
+    #print(f"input_chats: {input_chats}")
     source_chats = source_data.source_chats
 
     for input_chat in input_chats:
         chat_id = input_chat.get('chat_id')
-        input_contents = input_chat.get('contents', [])  # Correctly fetch contents from the chat
 
-        print(f"Processing chat_id: {chat_id}, input_contents: {input_contents}")
+        input_contents = input_chat.get('contents', [])  # Correctly fetch contents from the chat
+        #print(f"Processing chat_id: {chat_id}, input_contents: {input_contents}")
 
         contents = []
         for input_content in input_contents:
             if input_source == DataSource.telegram:
                 chat_type = input_content.get('@type')
-                print(f"chat_type: {chat_type}")
-
+                #print(f"chat_type: {chat_type}")
                 if chat_type == "message":
                     message = input_content.get('content', {})
                     if isinstance(message, dict) and message.get("@type") == "messageText":
                         content = message.get("text", {}).get("text", "")
-                        print(f"Extracted content: {content}")
-                        contents.append(content)
+                        if (content):
+                          #print(f"Extracted content: {content}")
+                          contents.append(content)
             else:
                 print(f"Unhandled data source: {input_source}")
 
@@ -225,7 +225,7 @@ def get_source_data(input_data: Dict[str, Any]) -> SourceData:
                 chat_id=chat_id,
                 contents="\r".join(contents)
             )
-            print(f"Generated source chat: {source_chat}")
+            #print(f"Generated source chat: {source_chat}")
             source_chats.append(source_chat)
 
     return source_data
