@@ -5,7 +5,7 @@ import numpy as np
 
 # Enum for DataSource
 class DataSource(Enum):
-    Telegram = 1
+    telegram = 1
 
 # ChatData for Source
 @dataclass

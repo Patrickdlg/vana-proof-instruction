@@ -89,7 +89,7 @@ class Proof:
     #RL: Proof Data...
     def proof_data(self) -> ProofResponse:
         """Generate proofs for all input files."""
-        logging.info("Starting proof generation")
+        logging.info("Starting proof data")
 
         zktls_proof = None
         source_data = None
@@ -160,9 +160,12 @@ class Proof:
             cargo_data
         )
         quality = get_chat_quality(cargo_data)
+
         score_threshold = 0.5 #UPDATE after testing some conversations
         self.proof_response.valid = is_data_authentic and quality >= score_threshold and uniqueness > score_threshold
-
+        self.proof_response.uniqueness = uniqueness
+        self.proof_response.quality = quality
+        
         self.proof_response.attributes = {
             'proof_valid': is_data_authentic,
             'did_score_content': True,
@@ -174,55 +177,57 @@ class Proof:
         self.proof_response.metadata = metadata
         return self.proof_response
 
-def get_source_data(input_data: Dict[str, Any]) -> SourceData:
 
+def get_source_data(input_data: Dict[str, Any]) -> SourceData:
+    input_source_value = input_data.get('source', '').upper()
     input_source = None
-    input_source_value = input_data.get('source')
-    if (input_source_value.upper() == 'TELEGRAM'):
-        input_source = DataSource.Telegram
+
+    if input_source_value == 'TELEGRAM':
+        input_source = DataSource.telegram
     else:
         print(f"Unmapped data source: {input_source_value}")
 
     input_user = input_data.get('user')
+    print(f"input_user: {input_user}")
 
     source_data = SourceData(
-        source = input_source,
-        user = input_user
+        source=input_source,
+        user=input_user
     )
 
     input_chats = input_data.get('chats', [])
-    source_data_list = []
+    print(f"input_chats: {input_chats}")
+    source_chats = source_data.source_chats
 
     for input_chat in input_chats:
-        #print(f"input_chat: {input_chat}")
-        chat_id = None
-        contents = None
-        if input_source == DataSource.Telegram:
-            chat_type = input_chat.get('@type', None)
-            #print(f"chat_type: {chat_type}")
-            if (chat_type == "message"):
-                chat_id = input_chat.get('id', None)
-                message = input_chat.get('content', [])
-                #print(f"messages: {message}")
-                # Ensure 'messages' is a dictionary and extract text if applicable
-                if isinstance(message, dict) and message.get("@type") == "messageText":
-                    # Extract the nested 'text' field
-                    contents = message.get("text", {}).get("text", "")
-                    #print(f"chat_contents: {contents}")
-        else:
-            print(f"Unhandled data source: {input_source}")
+        chat_id = input_chat.get('chat_id')
+        input_contents = input_chat.get('contents', [])  # Correctly fetch contents from the chat
 
-        if (chat_id and contents):
-            source_chat_data = SourceChatData(
-                chat_id = chat_id,
-                contents = contents
-            )
-            source_data_list.append(
-                source_chat_data
-            )
+        print(f"Processing chat_id: {chat_id}, input_contents: {input_contents}")
 
-    source_data.source_chats = source_data_list
-    #print(f"Source data: {source_data}")
+        contents = []
+        for input_content in input_contents:
+            if input_source == DataSource.telegram:
+                chat_type = input_content.get('@type')
+                print(f"chat_type: {chat_type}")
+
+                if chat_type == "message":
+                    message = input_content.get('content', {})
+                    if isinstance(message, dict) and message.get("@type") == "messageText":
+                        content = message.get("text", {}).get("text", "")
+                        print(f"Extracted content: {content}")
+                        contents.append(content)
+            else:
+                print(f"Unhandled data source: {input_source}")
+
+        if chat_id and contents:
+            source_chat = SourceChatData(
+                chat_id=chat_id,
+                contents="\r".join(contents)
+            )
+            print(f"Generated source chat: {source_chat}")
+            source_chats.append(source_chat)
+
     return source_data
 
 def get_is_data_authentic(content, zktls_proof) -> bool:
