@@ -2,25 +2,34 @@ from enum import Enum
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Any
 import numpy as np
+from typing import Union
 
 # Enum for DataSource
 class DataSource(Enum):
     telegram = 1
 
 # ChatData for Source
+from dataclasses import dataclass, field
+
 @dataclass
 class SourceChatData:
     chat_id: int
-    contents: str
+    contents: list[str] = field(default_factory=list)
 
-    def __init__(self, chat_id, contents=None):
-        self.chat_id = chat_id
-        self.contents = contents
+    def content_as_text(self) -> str:
+        """Converts contents to a single string with each entry on a new line."""
+        return "\r".join(self.contents)
 
-    def to_dict(self):
+    def add_content(self, content: str) -> None:
+        """Adds a new content string to the contents list if it's not empty."""
+        if content:
+            self.contents.append(content)
+
+    def to_dict(self) -> dict:
+        """Converts the object to a dictionary representation."""
         return {
             "chat_id": self.chat_id,
-            "contents": self.contents
+            "contents": self.content_as_text()
         }
 
 # SourceData with enum and chat data

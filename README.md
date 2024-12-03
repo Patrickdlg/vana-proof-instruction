@@ -58,6 +58,12 @@ source activate pytorch
 my-proof
 ```
 
+test run
+__main__.py
+  Change folder: INPUT_DIR, OUTPUT_DIR, SEALED_DIR = 'input', 'output', '/sealed'
+
+source activate pytorch
+python my_proof/__main__.py
 
 
 ## Building and Releasing
@@ -120,6 +126,7 @@ docker run \
 --env USER_EMAIL=user123@gmail.com \
 gsc-my-proof
 ```
+
 
 
 Remember to populate the `/input` directory with the files you want to process.

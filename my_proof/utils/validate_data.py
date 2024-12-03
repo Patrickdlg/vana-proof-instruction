@@ -59,7 +59,8 @@ def validate_data(
         source_contents = None
         contents_length = 0
         if source_chat.contents:  # Ensure chat_contents is not None
-            source_contents = source_chat.contents
+            source_contents = source_chat.content_as_text()
+            print(f"source_contents: {source_contents}")
             contents_length = len(source_contents)
 
         chat_score = score_data(
