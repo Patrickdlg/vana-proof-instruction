@@ -2,28 +2,77 @@ from enum import Enum
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Any
 import numpy as np
+import math
 from typing import Union
+
+from dataclasses import dataclass, field
 
 # Enum for DataSource
 class DataSource(Enum):
     telegram = 1
 
-# ChatData for Source
-from dataclasses import dataclass, field
-
+# Source Chat Data
 @dataclass
 class SourceChatData:
     chat_id: int
+    participants: list[str] = field(default_factory=list)
     contents: list[str] = field(default_factory=list)
+    total_content_length: int = 0
+    total_content_value: int = 0
+
+    def timeliness_value(self) -> float:
+        if self.total_content_length == 0:
+            return 0
+        # tav = (𝛴 litsi) / (𝛴 li)
+        time_avg = self.total_content_value / self.total_content_length
+        # a = ln(2) / thl
+        half_life = 60  # 60 minutes
+        time_decay = math.log(2) / half_life
+        # t = exp(-atav)
+        return math.exp(- time_decay * time_avg)  # range 0 to 1
+
+    def thoughtfulness_of_conversation(self) -> float:
+        n = len(self.participants)  # n: number of participants
+        u = 2  # 𝜇: optimal number of participants
+        d = 1  # 𝜎: standard deviation of the curve
+
+        # Formula: p = exp(-(n-𝜇) / (2𝜎^2))
+        return math.exp(-(n - u) / (2 * d ** 2))  # range 0 to 1
+
+    def contextualness_of_conversation(self)  -> float:
+        c = self.total_content_length #total token length, c, of the text data
+        m = 2 #midpoint
+        k = 1 #key parameters.
+        # l=1/(1+exp(-k(c-c0)))
+        return 1/(1 + math.exp(-k*(c-m)))
+
+    def quality_score(self) -> float :
+        a = 1 # factor
+        b = 1 # factor
+        c = 1 # factor
+        t = self.timeliness_value()
+        p = self.thoughtfulness_of_conversation()
+        l = self.contextualness_of_conversation()
+        return round((a*t + b*t + c*l)/(a+b+c),2)
+
 
     def content_as_text(self) -> str:
         """Converts contents to a single string with each entry on a new line."""
         return "\r".join(self.contents)
 
-    def add_content(self, content: str) -> None:
+    def add_content(self, content: str, submission_in_minutes: int) -> None:
         """Adds a new content string to the contents list if it's not empty."""
         if content:
+            content_len = len(content)
+            self.total_content_length += content_len
+            content_value = submission_in_minutes * content_len
+            self.total_content_value += content_value
             self.contents.append(content)
+
+    def add_participant(self, participant: str) -> None:
+        """Adds a new participant to the participants list if it's not already present."""
+        if participant and participant not in self.participants:
+            self.participants.append(participant)
 
     def to_dict(self) -> dict:
         """Converts the object to a dictionary representation."""

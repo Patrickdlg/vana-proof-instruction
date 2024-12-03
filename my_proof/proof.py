@@ -11,6 +11,7 @@ from utils.feature_extraction import get_keywords_keybert, get_sentiment_data, g
 from models.cargo_data import SourceChatData, CargoData, SourceData, DataSource, MetaData, DataSource
 from utils.validate_data import validate_data
 
+
 class Proof:
     def __init__(self, config: Dict[str, Any]):
         self.config = config
@@ -124,10 +125,6 @@ class Proof:
             source_data = source_data,
             source_id = source_user_hash_64
         )
-        validate_data(
-            self.config,
-            cargo_data
-        )
 
         metadata = MetaData(
           source_id = source_user_hash_64,
@@ -147,30 +144,36 @@ class Proof:
                 'proof_valid': False,
                 'did_score_content': False,
                 'source': source_data.Source.name,
-                'user_id': source_data.user,
                 'submit_on': current_datetime,
                 'chat_data': None
             }
             self.proof_response.metadata = metadata
             return self.proof_response
 
-        #RL: loop though the source chat data, and get reuslt & scores
-        uniqueness = validate_data(
+        #validate/proof data ...
+        validate_data(
             self.config,
-            cargo_data
+            cargo_data,
+            self.proof_response
         )
-        quality = get_chat_quality(cargo_data)
 
         score_threshold = 0.5 #UPDATE after testing some conversations
-        self.proof_response.valid = is_data_authentic and quality >= score_threshold and uniqueness > score_threshold
-        self.proof_response.uniqueness = uniqueness
-        self.proof_response.quality = quality
+        self.proof_response.valid = (
+            is_data_authentic
+            and self.proof_response.quality >= score_threshold
+            and self.proof_response.uniqueness >= score_threshold
+        )
+        self.proof_response.score = (
+            self.proof_response.authenticity * 0.25
+            + self.proof_response.ownership * 0.25
+            + self.proof_response.quality * 0.25
+            + self.proof_response.uniqueness * 0.25
+        )
 
         self.proof_response.attributes = {
             'proof_valid': is_data_authentic,
             'did_score_content': True,
             'source': source_data.source.name,
-            'user_id': source_data.user,
             'submit_on': current_datetime,
             'chat_data': cargo_data.get_chat_list_data()
         }
@@ -178,22 +181,48 @@ class Proof:
         return self.proof_response
 
 def get_telegram_data(
-    input_content: str,
-    source_chat_data: SourceChatData
+    current_timestamp: datetime,
+    input_content: dict,
+    source_chat_data: 'SourceChatData'
 ):
     chat_type = input_content.get('@type')
-    #print(f"chat_type: {chat_type}")
     if chat_type == "message":
+        # Extract user ID
+        chat_user_id = input_content.get("sender_id", {}).get("user_id", "")
+        print(f"chat_user_id: {chat_user_id}")
+        source_chat_data.add_participant(chat_user_id)
+
+        # Extract and convert the Unix timestamp to a datetime object
+        date_value = input_content.get("date", None)
+        if date_value:
+            message_date = datetime.utcfromtimestamp(date_value)  # Convert Unix timestamp to datetime
+            #print(f"message_date: {message_date}")
+
+            # Convert current_timestamp to datetime if it's a Unix timestamp
+            if isinstance(current_timestamp, int):
+                current_timestamp = datetime.utcfromtimestamp(current_timestamp)
+
+            # Calculate the difference in minutes
+            time_in_seconds = (current_timestamp - message_date).total_seconds()
+            time_in_minutes = int(time_in_seconds // 60)
+        else:
+            time_in_minutes = 0  # Default to 0 if no date is provided
+            print("No valid date found in the input content.")
+
+        # Extract the message content
         message = input_content.get('content', {})
         if isinstance(message, dict) and message.get("@type") == "messageText":
             content = message.get("text", {}).get("text", "")
             #print(f"Extracted content: {content}")
             source_chat_data.add_content(
-                content
+                content,
+                time_in_minutes
             )
 
 
 def get_source_data(input_data: Dict[str, Any]) -> SourceData:
+    current_timestamp = int(datetime.now().timestamp())
+
     input_source_value = input_data.get('source', '').upper()
     input_source = None
 
@@ -224,6 +253,7 @@ def get_source_data(input_data: Dict[str, Any]) -> SourceData:
             for input_content in input_contents:
                 if input_source == DataSource.telegram:
                     get_telegram_data(
+                        current_timestamp,
                         input_content,
                         source_chat
                     )
@@ -234,17 +264,9 @@ def get_source_data(input_data: Dict[str, Any]) -> SourceData:
             )
     return source_data
 
+
 def get_is_data_authentic(content, zktls_proof) -> bool:
     """Determine if the submitted data is authentic by checking the content against a zkTLS proof"""
-    return 1.0
-
-def get_chat_quality(chat) -> float:
-    """Compute and return the overall score of a chat based on weighted average for message recency, conversation length, and number of participants"""
-    return 1.0
-
-def get_uniqueness(source_user_hash_64, chats) -> float:
-    """Compute the uniqueness of the submitted data"""
-    #TODO: Check indexing on the IPFS data and see if we can fetch the saved attributes
     return 1.0
 
 def get_user_submission_freshness(source, user) -> float:

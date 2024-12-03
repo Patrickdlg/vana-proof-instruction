@@ -1,17 +1,16 @@
 {
   "dlp_id": 1234,
-  "valid": true,
-  "score": 0.0,
+  "valid": false,
+  "score": 0.7675000000000001,
   "authenticity": 1.0,
   "ownership": 1.0,
-  "quality": 1.0,
+  "quality": 0.27,
   "uniqueness": 0.8,
   "attributes": {
     "proof_valid": 1.0,
     "did_score_content": true,
     "source": "telegram",
-    "user_id": "unique identifier",
-    "submit_on": "2024-12-03T10:30:23.733882",
+    "submit_on": "2024-12-03T13:34:30.136824",
     "chat_data": [
       {
         "chat_id": 777000,
@@ -34,137 +33,19 @@
           "message": 0.3664
         },
         "keywords_lda": {
-          "simply": 0.0476190485060215,
+          "account": 0.0476190485060215,
           "code": 0.0476190485060215,
-          "give": 0.0476190485060215,
           "log": 0.0476190485060215,
           "telegram": 0.0476190485060215,
-          "another": 0.0476190485060215,
-          "trying": 0.0476190485060215,
-          "ask": 0.0476190485060215,
-          "say": 0.0476190485060215,
-          "else": 0.039147961884737015,
-          "ignore": 0.03914772346615791,
-          "even": 0.0476190485060215
-        }
-      },
-      {
-        "chat_id": -4579293875,
-        "chat_length": 128,
-        "sentiment": {
-          "positive": 0.0,
-          "neutral": 0.6493326425552368,
-          "negative": 0.0
-        },
-        "keywords_keybert": {
-          "banned telegram": 0.7667,
-          "telegram group": 0.6704,
-          "telegram": 0.5825,
-          "telegram think": 0.5422,
-          "hacked banned": 0.5396,
-          "dont hacked": 0.4767,
-          "think bot": 0.4473,
-          "bot good": 0.4446,
-          "dont banned": 0.4291,
-          "hacked": 0.4185
-        },
-        "keywords_lda": {
-          "dont": 0.09090909361839294,
-          "banned": 0.09090909361839294,
-          "get": 0.09090908616781235,
-          "telegram": 0.09090908616781235,
-          "group": 0.09090908616781235,
-          "good": 0.09090908616781235,
-          "hacked": 0.09090908616781235
-        }
-      },
-      {
-        "chat_id": 7700799410,
-        "chat_length": 117,
-        "sentiment": {
-          "positive": 0.0,
-          "neutral": 0.5554541945457458,
-          "negative": 0.0
-        },
-        "keywords_keybert": {
-          "raining design": 0.6415,
-          "says raining": 0.627,
-          "raining": 0.619,
-          "laundry outside": 0.5767,
-          "laundry": 0.4282,
-          "eye laundry": 0.4271,
-          "outside acknowledge": 0.3663,
-          "outside": 0.3493,
-          "gball sharon": 0.2575,
-          "sharon says": 0.2558
-        },
-        "keywords_lda": {
-          "quarter": 0.07692307233810425,
-          "says": 0.07692307233810425,
-          "oi": 0.07692307233810425,
-          "raining": 0.07692307233810425,
-          "laundry": 0.07692307233810425,
-          "outside": 0.07704822719097137,
-          "sharon": 0.07700871676206589,
-          "acknowledge": 0.07697442919015884,
-          "eye": 0.07692711055278778,
-          "design": 0.0769246369600296
-        }
-      },
-      {
-        "chat_id": 6383192471,
-        "chat_length": 26,
-        "sentiment": {
-          "positive": 0.0,
-          "neutral": 0.0,
-          "negative": 0.8584403395652771
-        },
-        "keywords_keybert": {
-          "real crazy": 0.6479,
-          "crazy": 0.548,
-          "real": 0.5071
-        },
-        "keywords_lda": {
-          "real": 0.5000000596046448,
-          "crazy": 0.4999999701976776
-        }
-      },
-      {
-        "chat_id": 777000,
-        "chat_length": 288,
-        "sentiment": {
-          "positive": 0.0,
-          "neutral": 0.9256280660629272,
-          "negative": 0.0
-        },
-        "keywords_keybert": {
-          "telegram account": 0.6956,
-          "telegram code": 0.6916,
-          "log telegram": 0.6804,
-          "telegram": 0.6182,
-          "say telegram": 0.4924,
-          "login code": 0.4632,
-          "41838 code": 0.4302,
-          "code 41838": 0.3927,
-          "request code": 0.3869,
-          "message": 0.3664
-        },
-        "keywords_lda": {
-          "ask": 0.0476190485060215,
-          "code": 0.04842797666788101,
-          "log": 0.04790505766868591,
-          "telegram": 0.04777387157082558,
-          "say": 0.0476190447807312,
-          "used": 0.0476190485060215,
           "request": 0.0476190447807312,
+          "give": 0.0476190485060215,
           "ignore": 0.0476190485060215,
-          "message": 0.0476190485060215,
-          "another": 0.047615304589271545,
-          "anyone": 0.0476190485060215,
-          "give": 0.04766220599412918,
-          "account": 0.03915069252252579,
-          "simply": 0.0476190447807312,
-          "anything": 0.04759802669286728
+          "login": 0.0476190485060215,
+          "say": 0.0476190447807312,
+          "never": 0.0476190447807312,
+          "used": 0.03914699703454971,
+          "trying": 0.039146777242422104,
+          "ask": 0.0476190485060215
         }
       },
       {
@@ -188,13 +69,13 @@
           "hacked": 0.4185
         },
         "keywords_lda": {
-          "dont": 0.13043487071990967,
-          "banned": 0.13043487071990967,
+          "good": 0.09090908616781235,
           "get": 0.09090908616781235,
           "telegram": 0.09090908616781235,
+          "hacked": 0.09090908616781235,
           "group": 0.09090908616781235,
-          "good": 0.09090908616781235,
-          "hacked": 0.09090908616781235
+          "dont": 0.13043488562107086,
+          "banned": 0.09090909361839294
         }
       },
       {
@@ -223,9 +104,8 @@
           "oi": 0.07692307233810425,
           "raining": 0.07692307233810425,
           "laundry": 0.07692307233810425,
-          "keep": 0.07692308723926544,
-          "acknowledge": 0.07692308723926544,
-          "hello": 0.07692308723926544
+          "design": 0.07692309468984604,
+          "acknowledge": 0.07692309468984604
         }
       },
       {
@@ -242,8 +122,8 @@
           "real": 0.5071
         },
         "keywords_lda": {
-          "real": 0.5,
-          "crazy": 0.4999999701976776
+          "crazy": 0.5,
+          "real": 0.5
         }
       }
     ]

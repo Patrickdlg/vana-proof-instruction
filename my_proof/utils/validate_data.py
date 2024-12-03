@@ -1,4 +1,5 @@
 from models.cargo_data import CargoData, ChatData, SourceChatData, SourceData
+from models.proof_response import ProofResponse
 from typing import List, Dict, Any
 
 # Assuming the existence of these functions
@@ -14,7 +15,7 @@ def get_user_submited_chat_data(
 
     return []
 
-def score_data(previous_chat_list: List[ChatData], chat_id: int, content_length: int) -> float:
+def score_uniqueness(previous_chat_list: List[ChatData], chat_id: int, content_length: int) -> float:
     if content_length == 0 :
         return 0
 
@@ -36,15 +37,17 @@ def score_data(previous_chat_list: List[ChatData], chat_id: int, content_length:
 
 def validate_data(
     config: Dict[str, Any],
-    cargo_data: CargoData
-) -> float:
+    cargo_data : CargoData,
+    proof_data : ProofResponse
+) :
     source_data = cargo_data.source_data
     source_chats = source_data.source_chats
 
     score_threshold = 0.5
     number_of_keywords = 10
 
-    total_score = 0
+    total_uniqueness = 0.00
+    total_quality = 0.00
     chat_count = 0
 
     previous_chat_list = get_user_submited_chat_data(
@@ -63,15 +66,21 @@ def validate_data(
             print(f"source_contents: {source_contents}")
             contents_length = len(source_contents)
 
-        chat_score = score_data(
+        chat_id = source_chat.chat_id
+        uniqueness = score_uniqueness(
             previous_chat_list,
-            source_chat.chat_id,
+            chat_id,
             contents_length
         )
-        total_score += chat_score
+        print(f"Chat({chat_id}) - uniqueness: {uniqueness}")
+        total_uniqueness += uniqueness
+
+        quality = source_chat.quality_score()
+        print(f"Chat({chat_id}) - quality: {quality}")
+        total_quality += quality
 
         # if chat data has meaningful data...
-        if chat_score > score_threshold:
+        if uniqueness > score_threshold:
             # content is unique...
             chat_sentiment = get_sentiment_data(
                 source_contents
@@ -100,6 +109,7 @@ def validate_data(
 
     # Calculate uniqueness if there are chats
     if chat_count > 0:
-        return total_score / chat_count
-
-    return 0
+        proof_data.uniqueness = round(total_uniqueness / chat_count, 2)
+        print(f"proof_data.uniqueness: {proof_data.uniqueness}")
+        proof_data.quality = round(total_quality / chat_count, 2)
+        print(f"proof_data.quality: {proof_data.quality}")
