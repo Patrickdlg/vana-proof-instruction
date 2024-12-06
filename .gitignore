@@ -11,3 +11,4 @@ demo/*
 # virtual environments and python versioning for local dev
 venv*/
 .python-version
+env/

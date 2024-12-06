@@ -1,4 +1,4 @@
-FROM python:3.12-slim
+FROM python:3.11-slim
 
 # Install any Python dependencies your application needs, e.g.:
 RUN pip install --no-cache-dir requests
