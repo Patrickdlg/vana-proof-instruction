@@ -34,6 +34,14 @@ jobs:
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
+    - name: Initial Cleanup
+      run: |
+        sudo rm -rf /usr/share/dotnet
+        sudo rm -rf /opt/ghc
+        sudo rm -rf "/usr/local/share/boost"
+        sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+        docker system prune -af --volumes
+
     - name: Clone and set up GSC
       run: |
         git clone -b dFusionAI/patchgsc225 https://github.com/dfusionai/gsc.git
@@ -63,6 +71,10 @@ jobs:
       run: |
         cd gsc
         ./gsc info-image gsc-my-proof > ../sigstruct.txt
+
+    - name: Cleanup GSC Repo
+      run: |
+        rm -rf gsc
 
     - name: Upload image
       uses: actions/upload-artifact@v3
