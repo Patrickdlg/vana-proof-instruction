@@ -1,0 +1,1149 @@
+{
+    "source": "telegram",
+    "user": "unique identifier",
+    "chats": [
+        {
+            "chat_id": 777000,
+            "contents": [
+                {
+                    "@type": "message",
+                    "id": 18874368,
+                    "sender_id": {
+                        "@type": "messageSenderUser",
+                        "user_id": 777000
+                    },
+                    "chat_id": 777000,
+                    "is_outgoing": false,
+                    "is_pinned": false,
+                    "is_from_offline": false,
+                    "can_be_saved": true,
+                    "has_timestamped_media": true,
+                    "is_channel_post": false,
+                    "is_topic_message": false,
+                    "contains_unread_mention": false,
+                    "date": 1731593366,
+                    "edit_date": 0,
+                    "unread_reactions": [],
+                    "message_thread_id": 0,
+                    "saved_messages_topic_id": 0,
+                    "self_destruct_in": 0,
+                    "auto_delete_in": 0,
+                    "via_bot_user_id": 0,
+                    "sender_business_bot_user_id": 0,
+                    "sender_boost_count": 0,
+                    "author_signature": "",
+                    "media_album_id": "0",
+                    "effect_id": "0",
+                    "has_sensitive_content": false,
+                    "restriction_reason": "",
+                    "content": {
+                        "@type": "messageText",
+                        "text": {
+                            "@type": "formattedText",
+                            "text": "Login code: 41838. Do not give this code to anyone, even if they say they are from Telegram!\n\n❗️This code can be used to log in to your Telegram account. We never ask it for anything else.\n\nIf you didn't request this code by trying to log in on another device, simply ignore this message.",
+                            "entities": [
+                                {
+                                    "@type": "textEntity",
+                                    "offset": 0,
+                                    "length": 11,
+                                    "type": {
+                                        "@type": "textEntityTypeBold"
+                                    }
+                                },
+                                {
+                                    "@type": "textEntity",
+                                    "offset": 22,
+                                    "length": 3,
+                                    "type": {
+                                        "@type": "textEntityTypeBold"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "chat_id": -4579293875,
+            "contents": [
+                {
+                    "@type": "message",
+                    "id": 3145728,
+                    "sender_id": {
+                        "@type": "messageSenderUser",
+                        "user_id": 6383192471
+                    },
+                    "chat_id": -4579293875,
+                    "is_outgoing": false,
+                    "is_pinned": false,
+                    "is_from_offline": false,
+                    "can_be_saved": true,
+                    "has_timestamped_media": true,
+                    "is_channel_post": false,
+                    "is_topic_message": false,
+                    "contains_unread_mention": false,
+                    "date": 1731482929,
+                    "edit_date": 0,
+                    "unread_reactions": [],
+                    "message_thread_id": 0,
+                    "saved_messages_topic_id": 0,
+                    "self_destruct_in": 0,
+                    "auto_delete_in": 0,
+                    "via_bot_user_id": 0,
+                    "sender_business_bot_user_id": 0,
+                    "sender_boost_count": 0,
+                    "author_signature": "",
+                    "media_album_id": "0",
+                    "effect_id": "0",
+                    "has_sensitive_content": false,
+                    "restriction_reason": "",
+                    "content": {
+                        "@type": "messageBasicGroupChatCreate",
+                        "title": "vaughn work",
+                        "member_user_ids": [
+                            6383192471,
+                            7700799410,
+                            7445530166
+                        ]
+                    }
+                },
+                {
+                    "@type": "message",
+                    "id": 4194304,
+                    "sender_id": {
+                        "@type": "messageSenderUser",
+                        "user_id": 6383192471
+                    },
+                    "chat_id": -4579293875,
+                    "is_outgoing": false,
+                    "is_pinned": false,
+                    "is_from_offline": false,
+                    "can_be_saved": true,
+                    "has_timestamped_media": true,
+                    "is_channel_post": false,
+                    "is_topic_message": false,
+                    "contains_unread_mention": false,
+                    "date": 1731482938,
+                    "edit_date": 0,
+                    "unread_reactions": [],
+                    "message_thread_id": 0,
+                    "saved_messages_topic_id": 0,
+                    "self_destruct_in": 0,
+                    "auto_delete_in": 0,
+                    "via_bot_user_id": 0,
+                    "sender_business_bot_user_id": 0,
+                    "sender_boost_count": 0,
+                    "author_signature": "",
+                    "media_album_id": "0",
+                    "effect_id": "0",
+                    "has_sensitive_content": false,
+                    "restriction_reason": "",
+                    "content": {
+                        "@type": "messageText",
+                        "text": {
+                            "@type": "formattedText",
+                            "text": "this is a telegram group",
+                            "entities": []
+                        }
+                    }
+                },
+                {
+                    "@type": "message",
+                    "id": 5242880,
+                    "sender_id": {
+                        "@type": "messageSenderUser",
+                        "user_id": 7700799410
+                    },
+                    "chat_id": -4579293875,
+                    "is_outgoing": false,
+                    "is_pinned": false,
+                    "is_from_offline": false,
+                    "can_be_saved": true,
+                    "has_timestamped_media": true,
+                    "is_channel_post": false,
+                    "is_topic_message": false,
+                    "contains_unread_mention": false,
+                    "date": 1731483680,
+                    "edit_date": 0,
+                    "unread_reactions": [],
+                    "message_thread_id": 0,
+                    "saved_messages_topic_id": 0,
+                    "self_destruct_in": 0,
+                    "auto_delete_in": 0,
+                    "via_bot_user_id": 0,
+                    "sender_business_bot_user_id": 0,
+                    "sender_boost_count": 0,
+                    "author_signature": "",
+                    "media_album_id": "0",
+                    "effect_id": "0",
+                    "has_sensitive_content": false,
+                    "restriction_reason": "",
+                    "content": {
+                        "@type": "messageText",
+                        "text": {
+                            "@type": "formattedText",
+                            "text": "be active",
+                            "entities": []
+                        }
+                    }
+                },
+                {
+                    "@type": "message",
+                    "id": 6291456,
+                    "sender_id": {
+                        "@type": "messageSenderUser",
+                        "user_id": 7445530166
+                    },
+                    "chat_id": -4579293875,
+                    "is_outgoing": true,
+                    "is_pinned": false,
+                    "is_from_offline": false,
+                    "can_be_saved": true,
+                    "has_timestamped_media": true,
+                    "is_channel_post": false,
+                    "is_topic_message": false,
+                    "contains_unread_mention": false,
+                    "date": 1731483695,
+                    "edit_date": 0,
+                    "unread_reactions": [],
+                    "message_thread_id": 0,
+                    "saved_messages_topic_id": 0,
+                    "self_destruct_in": 0,
+                    "auto_delete_in": 0,
+                    "via_bot_user_id": 0,
+                    "sender_business_bot_user_id": 0,
+                    "sender_boost_count": 0,
+                    "author_signature": "",
+                    "media_album_id": "0",
+                    "effect_id": "0",
+                    "has_sensitive_content": false,
+                    "restriction_reason": "",
+                    "content": {
+                        "@type": "messageText",
+                        "text": {
+                            "@type": "formattedText",
+                            "text": "so dont get banned",
+                            "entities": []
+                        }
+                    }
+                },
+                {
+                    "@type": "message",
+                    "id": 7340032,
+                    "sender_id": {
+                        "@type": "messageSenderUser",
+                        "user_id": 6383192471
+                    },
+                    "chat_id": -4579293875,
+                    "is_outgoing": false,
+                    "is_pinned": false,
+                    "is_from_offline": false,
+                    "can_be_saved": true,
+                    "has_timestamped_media": true,
+                    "is_channel_post": false,
+                    "is_topic_message": false,
+                    "contains_unread_mention": false,
+                    "date": 1731483707,
+                    "edit_date": 0,
+                    "unread_reactions": [],
+                    "message_thread_id": 0,
+                    "saved_messages_topic_id": 0,
+                    "self_destruct_in": 0,
+                    "auto_delete_in": 0,
+                    "via_bot_user_id": 0,
+                    "sender_business_bot_user_id": 0,
+                    "sender_boost_count": 0,
+                    "author_signature": "",
+                    "media_album_id": "0",
+                    "effect_id": "0",
+                    "has_sensitive_content": false,
+                    "restriction_reason": "",
+                    "content": {
+                        "@type": "messageText",
+                        "text": {
+                            "@type": "formattedText",
+                            "text": "telegram will think you are a bot",
+                            "entities": []
+                        }
+                    }
+                },
+                {
+                    "@type": "message",
+                    "id": 10485760,
+                    "sender_id": {
+                        "@type": "messageSenderUser",
+                        "user_id": 6383192471
+                    },
+                    "chat_id": -4579293875,
+                    "is_outgoing": false,
+                    "is_pinned": false,
+                    "is_from_offline": false,
+                    "can_be_saved": true,
+                    "has_timestamped_media": true,
+                    "is_channel_post": false,
+                    "is_topic_message": false,
+                    "contains_unread_mention": false,
+                    "date": 1731487476,
+                    "edit_date": 0,
+                    "unread_reactions": [],
+                    "message_thread_id": 0,
+                    "saved_messages_topic_id": 0,
+                    "self_destruct_in": 0,
+                    "auto_delete_in": 0,
+                    "via_bot_user_id": 0,
+                    "sender_business_bot_user_id": 0,
+                    "sender_boost_count": 0,
+                    "author_signature": "",
+                    "media_album_id": "0",
+                    "effect_id": "0",
+                    "has_sensitive_content": false,
+                    "restriction_reason": "",
+                    "content": {
+                        "@type": "messageText",
+                        "text": {
+                            "@type": "formattedText",
+                            "text": "good",
+                            "entities": []
+                        }
+                    }
+                },
+                {
+                    "@type": "message",
+                    "id": 11534336,
+                    "sender_id": {
+                        "@type": "messageSenderUser",
+                        "user_id": 6383192471
+                    },
+                    "chat_id": -4579293875,
+                    "is_outgoing": false,
+                    "is_pinned": false,
+                    "is_from_offline": false,
+                    "can_be_saved": true,
+                    "has_timestamped_media": true,
+                    "is_channel_post": false,
+                    "is_topic_message": false,
+                    "contains_unread_mention": false,
+                    "date": 1731487486,
+                    "edit_date": 0,
+                    "unread_reactions": [],
+                    "message_thread_id": 0,
+                    "saved_messages_topic_id": 0,
+                    "self_destruct_in": 0,
+                    "auto_delete_in": 0,
+                    "via_bot_user_id": 0,
+                    "sender_business_bot_user_id": 0,
+                    "sender_boost_count": 0,
+                    "author_signature": "",
+                    "media_album_id": "0",
+                    "effect_id": "0",
+                    "has_sensitive_content": false,
+                    "restriction_reason": "",
+                    "content": {
+                        "@type": "messageText",
+                        "text": {
+                            "@type": "formattedText",
+                            "text": "dont get hacked",
+                            "entities": []
+                        }
+                    }
+                },
+                {
+                    "@type": "message",
+                    "id": 17825792,
+                    "sender_id": {
+                        "@type": "messageSenderUser",
+                        "user_id": 6383192471
+                    },
+                    "chat_id": -4579293875,
+                    "is_outgoing": false,
+                    "is_pinned": false,
+                    "is_from_offline": false,
+                    "can_be_saved": true,
+                    "has_timestamped_media": true,
+                    "is_channel_post": false,
+                    "is_topic_message": false,
+                    "contains_unread_mention": false,
+                    "date": 1731589670,
+                    "edit_date": 0,
+                    "unread_reactions": [],
+                    "message_thread_id": 0,
+                    "saved_messages_topic_id": 0,
+                    "self_destruct_in": 0,
+                    "auto_delete_in": 0,
+                    "via_bot_user_id": 0,
+                    "sender_business_bot_user_id": 0,
+                    "sender_boost_count": 0,
+                    "author_signature": "",
+                    "media_album_id": "0",
+                    "effect_id": "0",
+                    "has_sensitive_content": false,
+                    "restriction_reason": "",
+                    "content": {
+                        "@type": "messageText",
+                        "text": {
+                            "@type": "formattedText",
+                            "text": "not banned anymore?",
+                            "entities": []
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "chat_id": 2128277417,
+            "contents": [
+                {
+                    "@type": "message",
+                    "id": 16777216,
+                    "sender_id": {
+                        "@type": "messageSenderUser",
+                        "user_id": 2128277417
+                    },
+                    "chat_id": 2128277417,
+                    "is_outgoing": false,
+                    "is_pinned": false,
+                    "is_from_offline": false,
+                    "can_be_saved": true,
+                    "has_timestamped_media": true,
+                    "is_channel_post": false,
+                    "is_topic_message": false,
+                    "contains_unread_mention": false,
+                    "date": 1731492928,
+                    "edit_date": 0,
+                    "unread_reactions": [],
+                    "message_thread_id": 0,
+                    "saved_messages_topic_id": 0,
+                    "self_destruct_in": 0,
+                    "auto_delete_in": 0,
+                    "via_bot_user_id": 0,
+                    "sender_business_bot_user_id": 0,
+                    "sender_boost_count": 0,
+                    "author_signature": "",
+                    "media_album_id": "0",
+                    "effect_id": "0",
+                    "has_sensitive_content": false,
+                    "restriction_reason": "",
+                    "content": {
+                        "@type": "messageSticker",
+                        "sticker": {
+                            "@type": "sticker",
+                            "id": "499916253176007584",
+                            "set_id": "499916253176004642",
+                            "width": 512,
+                            "height": 512,
+                            "emoji": "👋",
+                            "format": {
+                                "@type": "stickerFormatTgs"
+                            },
+                            "full_type": {
+                                "@type": "stickerFullTypeRegular"
+                            },
+                            "outline": [
+                                {
+                                    "@type": "closedVectorPath",
+                                    "commands": [
+                                        {
+                                            "@type": "vectorPathCommandLine",
+                                            "end_point": {
+                                                "@type": "point",
+                                                "x": 378,
+                                                "y": 511
+                                            }
+                                        },
+                                        {
+                                            "@type": "vectorPathCommandLine",
+                                            "end_point": {
+                                                "@type": "point",
+                                                "x": 378,
+                                                "y": 450
+                                            }
+                                        },
+                                        {
+                                            "@type": "vectorPathCommandLine",
+                                            "end_point": {
+                                                "@type": "point",
+                                                "x": 395,
+                                                "y": 450
+                                            }
+                                        },
+                                        {
+                                            "@type": "vectorPathCommandCubicBezierCurve",
+                                            "start_control_point": {
+                                                "@type": "point",
+                                                "x": 395,
+                                                "y": 450
+                                            },
+                                            "end_control_point": {
+                                                "@type": "point",
+                                                "x": 406,
+                                                "y": 448
+                                            },
+                                            "end_point": {
+                                                "@type": "point",
+                                                "x": 406,
+                                                "y": 436
+                                            }
+                                        },
+                                        {
+                                            "@type": "vectorPathCommandCubicBezierCurve",
+                                            "start_control_point": {
+                                                "@type": "point",
+                                                "x": 406,
+                                                "y": 425
+                                            },
+                                            "end_control_point": {
+                                                "@type": "point",
+                                                "x": 406,
+                                                "y": 374
+                                            },
+                                            "end_point": {
+                                                "@type": "point",
+                                                "x": 406,
+                                                "y": 374
+                                            }
+                                        },
+                                        {
+                                            "@type": "vectorPathCommandCubicBezierCurve",
+                                            "start_control_point": {
+                                                "@type": "point",
+                                                "x": 406,
+                                                "y": 374
+                                            },
+                                            "end_control_point": {
+                                                "@type": "point",
+                                                "x": 409,
+                                                "y": 362
+                                            },
+                                            "end_point": {
+                                                "@type": "point",
+                                                "x": 388,
+                                                "y": 362
+                                            }
+                                        },
+                                        {
+                                            "@type": "vectorPathCommandCubicBezierCurve",
+                                            "start_control_point": {
+                                                "@type": "point",
+                                                "x": 367,
+                                                "y": 362
+                                            },
+                                            "end_control_point": {
+                                                "@type": "point",
+                                                "x": 110,
+                                                "y": 362
+                                            },
+                                            "end_point": {
+                                                "@type": "point",
+                                                "x": 110,
+                                                "y": 362
+                                            }
+                                        },
+                                        {
+                                            "@type": "vectorPathCommandCubicBezierCurve",
+                                            "start_control_point": {
+                                                "@type": "point",
+                                                "x": 110,
+                                                "y": 362
+                                            },
+                                            "end_control_point": {
+                                                "@type": "point",
+                                                "x": 97,
+                                                "y": 362
+                                            },
+                                            "end_point": {
+                                                "@type": "point",
+                                                "x": 97,
+                                                "y": 378
+                                            }
+                                        },
+                                        {
+                                            "@type": "vectorPathCommandCubicBezierCurve",
+                                            "start_control_point": {
+                                                "@type": "point",
+                                                "x": 97,
+                                                "y": 394
+                                            },
+                                            "end_control_point": {
+                                                "@type": "point",
+                                                "x": 97,
+                                                "y": 433
+                                            },
+                                            "end_point": {
+                                                "@type": "point",
+                                                "x": 97,
+                                                "y": 433
+                                            }
+                                        },
+                                        {
+                                            "@type": "vectorPathCommandCubicBezierCurve",
+                                            "start_control_point": {
+                                                "@type": "point",
+                                                "x": 97,
+                                                "y": 433
+                                            },
+                                            "end_control_point": {
+                                                "@type": "point",
+                                                "x": 96,
+                                                "y": 450
+                                            },
+                                            "end_point": {
+                                                "@type": "point",
+                                                "x": 116,
+                                                "y": 450
+                                            }
+                                        },
+                                        {
+                                            "@type": "vectorPathCommandCubicBezierCurve",
+                                            "start_control_point": {
+                                                "@type": "point",
+                                                "x": 136,
+                                                "y": 450
+                                            },
+                                            "end_control_point": {
+                                                "@type": "point",
+                                                "x": 123,
+                                                "y": 450
+                                            },
+                                            "end_point": {
+                                                "@type": "point",
+                                                "x": 123,
+                                                "y": 450
+                                            }
+                                        },
+                                        {
+                                            "@type": "vectorPathCommandLine",
+                                            "end_point": {
+                                                "@type": "point",
+                                                "x": 123,
+                                                "y": 511
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "thumbnail": {
+                                "@type": "thumbnail",
+                                "format": {
+                                    "@type": "thumbnailFormatWebp"
+                                },
+                                "width": 128,
+                                "height": 128,
+                                "file": {
+                                    "@type": "file",
+                                    "id": 3840,
+                                    "size": 670,
+                                    "expected_size": 670,
+                                    "local": {
+                                        "@type": "localFile",
+                                        "path": "",
+                                        "can_be_downloaded": true,
+                                        "can_be_deleted": false,
+                                        "is_downloading_active": false,
+                                        "is_downloading_completed": false,
+                                        "download_offset": 0,
+                                        "downloaded_prefix_size": 0,
+                                        "downloaded_size": 0
+                                    },
+                                    "remote": {
+                                        "@type": "remoteFile",
+                                        "id": "AAMCAgADGQEAAxBnNgShNeit1heOrKJ_sTbSyaM7RQACoAsAAi8P8AZIrHu9WfuivwEAB20AAzYE",
+                                        "unique_id": "AQADoAsAAi8P8AZy",
+                                        "is_uploading_active": false,
+                                        "is_uploading_completed": true,
+                                        "uploaded_size": 670
+                                    }
+                                }
+                            },
+                            "sticker": {
+                                "@type": "file",
+                                "id": 3841,
+                                "size": 7365,
+                                "expected_size": 7365,
+                                "local": {
+                                    "@type": "localFile",
+                                    "path": "",
+                                    "can_be_downloaded": true,
+                                    "can_be_deleted": false,
+                                    "is_downloading_active": false,
+                                    "is_downloading_completed": false,
+                                    "download_offset": 0,
+                                    "downloaded_prefix_size": 0,
+                                    "downloaded_size": 0
+                                },
+                                "remote": {
+                                    "@type": "remoteFile",
+                                    "id": "CAACAgIAAxkBAAMQZzYEoTXordYXjqyif7E20smjO0UAAqALAAIvD_AGSKx7vVn7or82BA",
+                                    "unique_id": "AgADoAsAAi8P8AY",
+                                    "is_uploading_active": false,
+                                    "is_uploading_completed": true,
+                                    "uploaded_size": 7365
+                                }
+                            }
+                        },
+                        "is_premium": false
+                    }
+                }
+            ]
+        },
+        {
+            "chat_id": 7700799410,
+            "contents": [
+                {
+                    "@type": "message",
+                    "id": 1048576,
+                    "sender_id": {
+                        "@type": "messageSenderUser",
+                        "user_id": 7700799410
+                    },
+                    "chat_id": 7700799410,
+                    "is_outgoing": false,
+                    "is_pinned": false,
+                    "is_from_offline": false,
+                    "can_be_saved": true,
+                    "has_timestamped_media": true,
+                    "is_channel_post": false,
+                    "is_topic_message": false,
+                    "contains_unread_mention": false,
+                    "date": 1731482774,
+                    "edit_date": 0,
+                    "unread_reactions": [],
+                    "message_thread_id": 0,
+                    "saved_messages_topic_id": 0,
+                    "self_destruct_in": 0,
+                    "auto_delete_in": 0,
+                    "via_bot_user_id": 0,
+                    "sender_business_bot_user_id": 0,
+                    "sender_boost_count": 0,
+                    "author_signature": "",
+                    "media_album_id": "0",
+                    "effect_id": "0",
+                    "has_sensitive_content": false,
+                    "restriction_reason": "",
+                    "content": {
+                        "@type": "messageText",
+                        "text": {
+                            "@type": "formattedText",
+                            "text": "oi",
+                            "entities": []
+                        }
+                    }
+                },
+                {
+                    "@type": "message",
+                    "id": 12582912,
+                    "sender_id": {
+                        "@type": "messageSenderUser",
+                        "user_id": 7700799410
+                    },
+                    "chat_id": 7700799410,
+                    "is_outgoing": false,
+                    "is_pinned": false,
+                    "is_from_offline": false,
+                    "can_be_saved": true,
+                    "has_timestamped_media": true,
+                    "is_channel_post": false,
+                    "is_topic_message": false,
+                    "contains_unread_mention": false,
+                    "date": 1731490718,
+                    "edit_date": 0,
+                    "unread_reactions": [],
+                    "message_thread_id": 0,
+                    "saved_messages_topic_id": 0,
+                    "self_destruct_in": 0,
+                    "auto_delete_in": 0,
+                    "via_bot_user_id": 0,
+                    "sender_business_bot_user_id": 0,
+                    "sender_boost_count": 0,
+                    "author_signature": "",
+                    "media_album_id": "0",
+                    "effect_id": "0",
+                    "has_sensitive_content": false,
+                    "restriction_reason": "",
+                    "content": {
+                        "@type": "messageText",
+                        "text": {
+                            "@type": "formattedText",
+                            "text": "hello gball",
+                            "entities": []
+                        }
+                    }
+                },
+                {
+                    "@type": "message",
+                    "id": 13631488,
+                    "sender_id": {
+                        "@type": "messageSenderUser",
+                        "user_id": 7700799410
+                    },
+                    "chat_id": 7700799410,
+                    "is_outgoing": false,
+                    "is_pinned": false,
+                    "is_from_offline": false,
+                    "can_be_saved": true,
+                    "has_timestamped_media": true,
+                    "is_channel_post": false,
+                    "is_topic_message": false,
+                    "contains_unread_mention": false,
+                    "date": 1731490725,
+                    "edit_date": 0,
+                    "unread_reactions": [],
+                    "message_thread_id": 0,
+                    "saved_messages_topic_id": 0,
+                    "self_destruct_in": 0,
+                    "auto_delete_in": 0,
+                    "via_bot_user_id": 0,
+                    "sender_business_bot_user_id": 0,
+                    "sender_boost_count": 0,
+                    "author_signature": "",
+                    "media_album_id": "0",
+                    "effect_id": "0",
+                    "has_sensitive_content": false,
+                    "restriction_reason": "",
+                    "content": {
+                        "@type": "messageText",
+                        "text": {
+                            "@type": "formattedText",
+                            "text": "sharon says it is raining by design quarter",
+                            "entities": []
+                        }
+                    }
+                },
+                {
+                    "@type": "message",
+                    "id": 14680064,
+                    "sender_id": {
+                        "@type": "messageSenderUser",
+                        "user_id": 7700799410
+                    },
+                    "chat_id": 7700799410,
+                    "is_outgoing": false,
+                    "is_pinned": false,
+                    "is_from_offline": false,
+                    "can_be_saved": true,
+                    "has_timestamped_media": true,
+                    "is_channel_post": false,
+                    "is_topic_message": false,
+                    "contains_unread_mention": false,
+                    "date": 1731490735,
+                    "edit_date": 0,
+                    "unread_reactions": [],
+                    "message_thread_id": 0,
+                    "saved_messages_topic_id": 0,
+                    "self_destruct_in": 0,
+                    "auto_delete_in": 0,
+                    "via_bot_user_id": 0,
+                    "sender_business_bot_user_id": 0,
+                    "sender_boost_count": 0,
+                    "author_signature": "",
+                    "media_album_id": "0",
+                    "effect_id": "0",
+                    "has_sensitive_content": false,
+                    "restriction_reason": "",
+                    "content": {
+                        "@type": "messageText",
+                        "text": {
+                            "@type": "formattedText",
+                            "text": "keep an eye out on the laundry outside",
+                            "entities": []
+                        }
+                    }
+                },
+                {
+                    "@type": "message",
+                    "id": 15728640,
+                    "sender_id": {
+                        "@type": "messageSenderUser",
+                        "user_id": 7700799410
+                    },
+                    "chat_id": 7700799410,
+                    "is_outgoing": false,
+                    "is_pinned": false,
+                    "is_from_offline": false,
+                    "can_be_saved": true,
+                    "has_timestamped_media": true,
+                    "is_channel_post": false,
+                    "is_topic_message": false,
+                    "contains_unread_mention": false,
+                    "date": 1731490742,
+                    "edit_date": 0,
+                    "unread_reactions": [],
+                    "message_thread_id": 0,
+                    "saved_messages_topic_id": 0,
+                    "self_destruct_in": 0,
+                    "auto_delete_in": 0,
+                    "via_bot_user_id": 0,
+                    "sender_business_bot_user_id": 0,
+                    "sender_boost_count": 0,
+                    "author_signature": "",
+                    "media_album_id": "0",
+                    "effect_id": "0",
+                    "has_sensitive_content": false,
+                    "restriction_reason": "",
+                    "content": {
+                        "@type": "messageText",
+                        "text": {
+                            "@type": "formattedText",
+                            "text": "do you acknowledge?",
+                            "entities": []
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "chat_id": 6383192471,
+            "contents": [
+                {
+                    "@type": "message",
+                    "id": 2097152,
+                    "sender_id": {
+                        "@type": "messageSenderUser",
+                        "user_id": 7445530166
+                    },
+                    "chat_id": 6383192471,
+                    "is_outgoing": true,
+                    "is_pinned": false,
+                    "is_from_offline": false,
+                    "can_be_saved": true,
+                    "has_timestamped_media": true,
+                    "is_channel_post": false,
+                    "is_topic_message": false,
+                    "contains_unread_mention": false,
+                    "date": 1731482883,
+                    "edit_date": 0,
+                    "unread_reactions": [],
+                    "message_thread_id": 0,
+                    "saved_messages_topic_id": 0,
+                    "self_destruct_in": 0,
+                    "auto_delete_in": 0,
+                    "via_bot_user_id": 0,
+                    "sender_business_bot_user_id": 0,
+                    "sender_boost_count": 0,
+                    "author_signature": "",
+                    "media_album_id": "0",
+                    "effect_id": "0",
+                    "has_sensitive_content": false,
+                    "restriction_reason": "",
+                    "content": {
+                        "@type": "messageSticker",
+                        "sticker": {
+                            "@type": "sticker",
+                            "id": "816099496260796811",
+                            "set_id": "816099496260796428",
+                            "width": 512,
+                            "height": 512,
+                            "emoji": "👋",
+                            "format": {
+                                "@type": "stickerFormatTgs"
+                            },
+                            "full_type": {
+                                "@type": "stickerFullTypeRegular"
+                            },
+                            "outline": [
+                                {
+                                    "@type": "closedVectorPath",
+                                    "commands": [
+                                        {
+                                            "@type": "vectorPathCommandCubicBezierCurve",
+                                            "start_control_point": {
+                                                "@type": "point",
+                                                "x": 193,
+                                                "y": 500
+                                            },
+                                            "end_control_point": {
+                                                "@type": "point",
+                                                "x": 127,
+                                                "y": 472
+                                            },
+                                            "end_point": {
+                                                "@type": "point",
+                                                "x": 79,
+                                                "y": 423
+                                            }
+                                        },
+                                        {
+                                            "@type": "vectorPathCommandCubicBezierCurve",
+                                            "start_control_point": {
+                                                "@type": "point",
+                                                "x": -109,
+                                                "y": 228
+                                            },
+                                            "end_control_point": {
+                                                "@type": "point",
+                                                "x": 120,
+                                                "y": -78
+                                            },
+                                            "end_point": {
+                                                "@type": "point",
+                                                "x": 354,
+                                                "y": 26
+                                            }
+                                        },
+                                        {
+                                            "@type": "vectorPathCommandCubicBezierCurve",
+                                            "start_control_point": {
+                                                "@type": "point",
+                                                "x": 590,
+                                                "y": 131
+                                            },
+                                            "end_control_point": {
+                                                "@type": "point",
+                                                "x": 528,
+                                                "y": 493
+                                            },
+                                            "end_point": {
+                                                "@type": "point",
+                                                "x": 261,
+                                                "y": 498
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "thumbnail": {
+                                "@type": "thumbnail",
+                                "format": {
+                                    "@type": "thumbnailFormatWebp"
+                                },
+                                "width": 128,
+                                "height": 128,
+                                "file": {
+                                    "@type": "file",
+                                    "id": 3865,
+                                    "size": 7156,
+                                    "expected_size": 7156,
+                                    "local": {
+                                        "@type": "localFile",
+                                        "path": "",
+                                        "can_be_downloaded": true,
+                                        "can_be_deleted": false,
+                                        "is_downloading_active": false,
+                                        "is_downloading_completed": false,
+                                        "download_offset": 0,
+                                        "downloaded_prefix_size": 0,
+                                        "downloaded_size": 0
+                                    },
+                                    "remote": {
+                                        "@type": "remoteFile",
+                                        "id": "AAMCAgADGQMAAwJnNgSmxrKPArJc3mfqFn01gi-rJQACiwEAAiteUwujYbxpJDSDUAEAB20AAzYE",
+                                        "unique_id": "AQADiwEAAiteUwty",
+                                        "is_uploading_active": false,
+                                        "is_uploading_completed": true,
+                                        "uploaded_size": 7156
+                                    }
+                                }
+                            },
+                            "sticker": {
+                                "@type": "file",
+                                "id": 3866,
+                                "size": 33910,
+                                "expected_size": 33910,
+                                "local": {
+                                    "@type": "localFile",
+                                    "path": "",
+                                    "can_be_downloaded": true,
+                                    "can_be_deleted": false,
+                                    "is_downloading_active": false,
+                                    "is_downloading_completed": false,
+                                    "download_offset": 0,
+                                    "downloaded_prefix_size": 0,
+                                    "downloaded_size": 0
+                                },
+                                "remote": {
+                                    "@type": "remoteFile",
+                                    "id": "CAACAgIAAxkDAAMCZzYEpsayjwKyXN5n6hZ9NYIvqyUAAosBAAIrXlMLo2G8aSQ0g1A2BA",
+                                    "unique_id": "AgADiwEAAiteUws",
+                                    "is_uploading_active": false,
+                                    "is_uploading_completed": true,
+                                    "uploaded_size": 33910
+                                }
+                            }
+                        },
+                        "is_premium": false
+                    }
+                },
+                {
+                    "@type": "message",
+                    "id": 8388608,
+                    "sender_id": {
+                        "@type": "messageSenderUser",
+                        "user_id": 6383192471
+                    },
+                    "chat_id": 6383192471,
+                    "is_outgoing": false,
+                    "is_pinned": false,
+                    "is_from_offline": false,
+                    "can_be_saved": true,
+                    "has_timestamped_media": true,
+                    "is_channel_post": false,
+                    "is_topic_message": false,
+                    "contains_unread_mention": false,
+                    "date": 1731487446,
+                    "edit_date": 0,
+                    "unread_reactions": [],
+                    "message_thread_id": 0,
+                    "saved_messages_topic_id": 0,
+                    "self_destruct_in": 0,
+                    "auto_delete_in": 0,
+                    "via_bot_user_id": 0,
+                    "sender_business_bot_user_id": 0,
+                    "sender_boost_count": 0,
+                    "author_signature": "",
+                    "media_album_id": "0",
+                    "effect_id": "0",
+                    "has_sensitive_content": false,
+                    "restriction_reason": "",
+                    "content": {
+                        "@type": "messageText",
+                        "text": {
+                            "@type": "formattedText",
+                            "text": "are you real",
+                            "entities": []
+                        }
+                    }
+                },
+                {
+                    "@type": "message",
+                    "id": 9437184,
+                    "sender_id": {
+                        "@type": "messageSenderUser",
+                        "user_id": 7445530166
+                    },
+                    "chat_id": 6383192471,
+                    "is_outgoing": true,
+                    "is_pinned": false,
+                    "is_from_offline": false,
+                    "can_be_saved": true,
+                    "has_timestamped_media": true,
+                    "is_channel_post": false,
+                    "is_topic_message": false,
+                    "contains_unread_mention": false,
+                    "date": 1731487465,
+                    "edit_date": 0,
+                    "unread_reactions": [],
+                    "message_thread_id": 0,
+                    "saved_messages_topic_id": 0,
+                    "self_destruct_in": 0,
+                    "auto_delete_in": 0,
+                    "via_bot_user_id": 0,
+                    "sender_business_bot_user_id": 0,
+                    "sender_boost_count": 0,
+                    "author_signature": "",
+                    "media_album_id": "0",
+                    "effect_id": "0",
+                    "has_sensitive_content": false,
+                    "restriction_reason": "",
+                    "content": {
+                        "@type": "messageText",
+                        "text": {
+                            "@type": "formattedText",
+                            "text": "are you crazy",
+                            "entities": []
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -9,6 +9,7 @@ idna==3.10
 Jinja2==3.1.4
 joblib==1.4.2
 keybert==0.8.5
+nltk==3.8.1
 markdown-it-py==3.0.0
 MarkupSafe==3.0.2
 mdurl==0.1.2
@@ -51,3 +52,5 @@ triton==3.1.0
 typing_extensions==4.12.2
 urllib3==2.2.3
 xxhash==3.5.0
+gensim==4.3.3
+pybloom-live==4.0.0
