@@ -72,10 +72,11 @@ jobs:
         cd gsc
         ./gsc info-image gsc-my-proof > ../sigstruct.txt
 
-    - name: Cleanup GSC Repo
+    - name: Cleanup GSC Repo and Docker
       run: |
         rm -rf gsc
-
+        docker system prune -af --volumes
+    
     - name: Upload image
       uses: actions/upload-artifact@v3
       with:
