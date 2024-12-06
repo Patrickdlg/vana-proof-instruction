@@ -1,0 +1,6 @@
+pydantic
+keybert
+nltk
+pybloom_live
+gensim
+requests
