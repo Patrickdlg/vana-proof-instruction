@@ -4,6 +4,7 @@ from typing import List, Dict, Any
 
 # Assuming the existence of these functions
 from utils.feature_extraction import get_sentiment_data, get_keywords_keybert, get_keywords_lda
+from utils.submit_data import validate_data, submit_data
 
 def get_user_submited_chat_data(
         config: Dict[str, Any],
@@ -40,7 +41,7 @@ def validate_data(
     cargo_data : CargoData,
     proof_data : ProofResponse
 ) :
-    source_data = cargo_data.source_data
+    source_data : SourceChatData = cargo_data.source_data
     source_chats = source_data.source_chats
 
     score_threshold = 0.5
@@ -54,6 +55,13 @@ def validate_data(
         config,
         cargo_data
     )
+    submission_json = source_data.to_submission_json()
+    print(f"submission_json: {submission_json}")
+    #RL Validate data & obtain unquiness from server
+    # response = validate_data(source_data)
+    # proof_data.uniqueness = response.uniqueness
+    #RL Todo...
+
     # Loop through the chat_data_list
     for source_chat in source_chats:
 
