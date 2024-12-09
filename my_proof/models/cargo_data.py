@@ -6,6 +6,7 @@ import math
 from typing import Union
 
 from dataclasses import dataclass, field
+from datetime import datetime
 
 # Enum for DataSource
 class DataSource(Enum):
@@ -19,6 +20,9 @@ class SourceChatData:
     contents: list[str] = field(default_factory=list)
     total_content_length: int = 0
     total_content_value: int = 0
+    chat_count : int = 0
+    chat_start_on: datetime = None
+    chat_ended_on: datetime = None
 
     def timeliness_value(self) -> float:
         if self.total_content_length == 0:
@@ -60,13 +64,40 @@ class SourceChatData:
         """Converts contents to a single string with each entry on a new line."""
         return "\r".join(self.contents)
 
-    def add_content(self, content: str, submission_in_minutes: int) -> None:
+    def add_content(
+        self,
+        content: str,
+        chat_timestamp: datetime,
+        submission_timestamp: datetime
+    ) -> None:
         """Adds a new content string to the contents list if it's not empty."""
         if content:
+            self.chat_count += 1
             content_len = len(content)
+
+            # Calculate the difference in minutes
+            # Convert current_timestamp to datetime if it's a Unix timestamp
+            if isinstance(submission_timestamp, int):
+                submission_timestamp = datetime.utcfromtimestamp(submission_timestamp)
+            time_in_seconds = (submission_timestamp - chat_timestamp).total_seconds()
+            time_in_minutes = int(time_in_seconds // 60)
+
+            if (self.chat_start_on):
+               if (self.chat_start_on < chat_timestamp):
+                  self.chat_start_on = chat_timestamp
+            else :
+               self.chat_start_on = chat_timestamp
+
+            if (self.chat_ended_on):
+               if (self.chat_ended_on > chat_timestamp):
+                  self.chat_ended_on = chat_timestamp
+            else :
+               self.chat_ended_on = chat_timestamp
+
             self.total_content_length += content_len
-            content_value = submission_in_minutes * content_len
+            content_value = time_in_minutes * content_len
             self.total_content_value += content_value
+
             self.contents.append(content)
 
     def add_participant(self, participant: str) -> None:
@@ -81,23 +112,52 @@ class SourceChatData:
             "contents": self.content_as_text()
         }
 
+    def to_submission_json(self) -> dict:
+        return {
+            "SourceChatId": self.chat_id,
+            "ParticipantCount": len(self.participants),
+            "ChatCount": self.chat_count,
+            "ChatLength": self.total_content_length,
+            "ChatStartOn": self.chat_start_on.isoformat() if isinstance(self.chat_start_on, datetime) else str(self.chat_start_on),
+            "ChatEndedOn": self.chat_ended_on.isoformat() if isinstance(self.chat_ended_on, datetime) else str(self.chat_ended_on),
+        }
+
+
 # SourceData with enum and chat data
 @dataclass
 class SourceData:
     source: DataSource         # "telegram"
     user: str
+    submission_id: str
+    submission_by: str
+    submission_date: datetime
     source_chats: List[SourceChatData]  # List of SourceChatData instances
 
-    def __init__(self, source, user, source_chats=None):
+    def __init__(self, source, submission_id, submission_by, submission_date, user, source_chats=None):
         self.source = source
         self.user = user
+        self.submission_id = submission_id
+        self.submission_by = submission_by
+        self.submission_date = submission_date
         self.source_chats = source_chats or []
 
     def to_dict(self):
         return {
             "source": self.source.name,  # Use .name to convert enum to string
             "user": self.user,
+            "submission_id": self.submission_id,
+            "submission_by": self.submission_by,
+            "submission_date": self.submission_date.isoformat() if isinstance(self.submission_date, datetime) else str(self.submission_date),
             "chats": [source_chat.to_dict() for source_chat in self.source_chats]
+        }
+
+    def to_submission_json(self) :
+        return {
+            "DataSource": self.source.name,  # Use .name to convert enum to string
+            "SourceId": self.submission_id,
+            "SubmittedBy": self.submission_by,
+            "SubmittedOn": self.submission_date.isoformat() if isinstance(self.submission_date, datetime) else str(self.submission_date),
+            "Chats": [source_chat.to_submission_json() for source_chat in self.source_chats]
         }
 
 
