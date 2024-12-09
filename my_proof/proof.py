@@ -117,6 +117,7 @@ class Proof:
             (source_data.source, source_data.user),
             salt
         )
+        source_data.submission_by = source_user_hash_64
         is_data_authentic = get_is_data_authentic(
             source_data,
             zktls_proof
@@ -178,10 +179,15 @@ class Proof:
             'chat_data': cargo_data.get_chat_list_data()
         }
         self.proof_response.metadata = metadata
+
+        #RL Validate data & obtain unquiness from server
+        # response = submit_data(source_data)...        
+        #RL Todo...
+
         return self.proof_response
 
 def get_telegram_data(
-    current_timestamp: datetime,
+    submission_timestamp: datetime,
     input_content: dict,
     source_chat_data: 'SourceChatData'
 ):
@@ -192,22 +198,11 @@ def get_telegram_data(
         print(f"chat_user_id: {chat_user_id}")
         source_chat_data.add_participant(chat_user_id)
 
+        message_date = submission_timestamp
         # Extract and convert the Unix timestamp to a datetime object
         date_value = input_content.get("date", None)
         if date_value:
             message_date = datetime.utcfromtimestamp(date_value)  # Convert Unix timestamp to datetime
-            #print(f"message_date: {message_date}")
-
-            # Convert current_timestamp to datetime if it's a Unix timestamp
-            if isinstance(current_timestamp, int):
-                current_timestamp = datetime.utcfromtimestamp(current_timestamp)
-
-            # Calculate the difference in minutes
-            time_in_seconds = (current_timestamp - message_date).total_seconds()
-            time_in_minutes = int(time_in_seconds // 60)
-        else:
-            time_in_minutes = 0  # Default to 0 if no date is provided
-            print("No valid date found in the input content.")
 
         # Extract the message content
         message = input_content.get('content', {})
@@ -216,12 +211,23 @@ def get_telegram_data(
             #print(f"Extracted content: {content}")
             source_chat_data.add_content(
                 content,
-                time_in_minutes
+                message_date,
+                submission_timestamp
             )
 
 
 def get_source_data(input_data: Dict[str, Any]) -> SourceData:
-    current_timestamp = int(datetime.now().timestamp())
+
+    revision = input_data.get('revision', '').upper()
+    if (revision and revision != "01.01"):
+       print(f"Invalid Revision: {revision}")
+
+
+    submission_date = datetime.now().timestamp()
+    # Extract and convert the Unix timestamp to a datetime object
+    date_value = input_data.get("submission_date", None)
+    if date_value:
+        submission_date = datetime.utcfromtimestamp(date_value)  # Convert Unix timestamp to datetime
 
     input_source_value = input_data.get('source', '').upper()
     input_source = None
@@ -231,12 +237,17 @@ def get_source_data(input_data: Dict[str, Any]) -> SourceData:
     else:
         print(f"Unmapped data source: {input_source_value}")
 
+    submission_id = input_data.get('submission_id', '').upper()
+
     input_user = input_data.get('user')
     #print(f"input_user: {input_user}")
 
     source_data = SourceData(
         source=input_source,
-        user=input_user
+        user=input_user,
+        submission_id = submission_id,
+        submission_by = input_user,
+        submission_date = submission_date
     )
 
     input_chats = input_data.get('chats', [])
@@ -253,7 +264,7 @@ def get_source_data(input_data: Dict[str, Any]) -> SourceData:
             for input_content in input_contents:
                 if input_source == DataSource.telegram:
                     get_telegram_data(
-                        current_timestamp,
+                        submission_date,
                         input_content,
                         source_chat
                     )
